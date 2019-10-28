@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.laidongs.sba.train"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "training",
+    "packageName": "com.laidongs.sba.train",
+    "packageFolder": "com/laidongs/sba/train",
+    "serverPort": "9082",
+    "authenticationType": "uaa",
+    "uaaBaseName": "user",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MzcxODUwNDk3ODY3NTNlYTZmNjA3YzMxMWVmNmQzMzk1Zjg5MTE0MzJlMmVmZTQ2ODZjMGYzYmI4NGU2NTNiMTljOWMxOWY3MDBhNmYzZjZlMGVlZjBjOWJjODJiNTVkNzU0MDc1ZTVmMTI0MDk1MmMyMTA4NWE5MDFkZDRlYTk=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
