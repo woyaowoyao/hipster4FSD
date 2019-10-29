@@ -2,5 +2,9 @@ user_id;authority_name
 1;ROLE_ADMIN
 1;ROLE_USER
 3;ROLE_ADMIN
-3;ROLE_USER
+3;Mentor
 4;ROLE_USER
+5;Mentor
+6;Mentor
+7;Trainer
+8;Trainer

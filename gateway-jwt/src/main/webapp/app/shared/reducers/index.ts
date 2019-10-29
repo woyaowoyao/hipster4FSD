@@ -15,6 +15,10 @@ import passwordReset, { PasswordResetState } from 'app/modules/account/password-
 import paymentRecord, {
   PaymentRecordState
 } from 'app/entities/payment-record/payment-record.reducer';
+// prettier-ignore
+import trainingRecord, {
+  TrainingRecordState
+} from 'app/entities/training-record/training-record.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -28,6 +32,7 @@ export interface IRootState {
   readonly password: PasswordState;
   readonly settings: SettingsState;
   readonly paymentRecord: PaymentRecordState;
+  readonly trainingRecord: TrainingRecordState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -43,6 +48,7 @@ const rootReducer = combineReducers<IRootState>({
   password,
   settings,
   paymentRecord,
+  trainingRecord,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

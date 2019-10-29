@@ -1,0 +1,36 @@
+/**
+ * TrainingRecord entity.
+ * @author full stack trainning laidongshi.
+ */
+entity TrainingRecord {
+	id Long,
+	status String  required,
+	progress Integer required,
+    commissionAmount Float required,
+	avgRating Float required,
+	startDate String  required,
+	endDate String  required,
+	startTime String  required,
+	endTime String  required,
+	amountReceived Float required,
+    userId Long required,
+    userName String required,
+	mentorId Long required,
+    mentorName String required,
+    trainingId Long required,
+    skillName String required,
+    fees Float required,
+	remarks String
+}
+
+
+
+
+// Set pagination options
+paginate TrainingRecord with infinite-scroll
+paginate TrainingRecord with pagination
+
+//  Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+
