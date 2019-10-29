@@ -7,3 +7,7 @@ git push -u origin master
 
 
 full stack training test 
+
+
+payment  
+jhipster import-jdl ./my-jdl-file.jh
