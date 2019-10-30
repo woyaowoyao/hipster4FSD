@@ -45,6 +45,11 @@ public class CacheConfiguration {
             createCache(cm, com.ibm.sp.gateway.domain.User.class.getName());
             createCache(cm, com.ibm.sp.gateway.domain.Authority.class.getName());
             createCache(cm, com.ibm.sp.gateway.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.ibm.sp.gateway.domain.Training.class.getName());
+            createCache(cm, com.ibm.sp.gateway.domain.TrainingRecord.class.getName());
+            createCache(cm, com.ibm.sp.gateway.domain.PaymentRecord.class.getName());
+            createCache(cm, com.ibm.sp.gateway.domain.Member.class.getName());
+            createCache(cm, com.ibm.sp.gateway.domain.Skill.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

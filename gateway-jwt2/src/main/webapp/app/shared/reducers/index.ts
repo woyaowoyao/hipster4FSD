@@ -11,6 +11,26 @@ import activate, { ActivateState } from 'app/modules/account/activate/activate.r
 import password, { PasswordState } from 'app/modules/account/password/password.reducer';
 import settings, { SettingsState } from 'app/modules/account/settings/settings.reducer';
 import passwordReset, { PasswordResetState } from 'app/modules/account/password-reset/password-reset.reducer';
+// prettier-ignore
+import training, {
+  TrainingState
+} from 'app/entities/training/training.reducer';
+// prettier-ignore
+import trainingRecord, {
+  TrainingRecordState
+} from 'app/entities/training-record/training-record.reducer';
+// prettier-ignore
+import paymentRecord, {
+  PaymentRecordState
+} from 'app/entities/payment-record/payment-record.reducer';
+// prettier-ignore
+import member, {
+  MemberState
+} from 'app/entities/member/member.reducer';
+// prettier-ignore
+import skill, {
+  SkillState
+} from 'app/entities/skill/skill.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -23,6 +43,11 @@ export interface IRootState {
   readonly passwordReset: PasswordResetState;
   readonly password: PasswordState;
   readonly settings: SettingsState;
+  readonly training: TrainingState;
+  readonly trainingRecord: TrainingRecordState;
+  readonly paymentRecord: PaymentRecordState;
+  readonly member: MemberState;
+  readonly skill: SkillState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -37,6 +62,11 @@ const rootReducer = combineReducers<IRootState>({
   passwordReset,
   password,
   settings,
+  training,
+  trainingRecord,
+  paymentRecord,
+  member,
+  skill,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });
