@@ -11,3 +11,6 @@ full stack training test
 
 payment  
 jhipster import-jdl ./my-jdl-file.jh
+
+training
+jhipster import-jdl ./train-jdl.jh
