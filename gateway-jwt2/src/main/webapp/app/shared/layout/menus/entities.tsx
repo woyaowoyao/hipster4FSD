@@ -7,7 +7,7 @@ import { NavLink as Link } from 'react-router-dom';
 import { NavDropdown } from './menu-components';
 
 export const EntitiesMenu = props => (
-  <NavDropdown icon="th-list" name="Entities" id="entity-menu">
+  <NavDropdown icon="th-list" name="MyMenus" id="entity-menu">
     <MenuItem icon="asterisk" to="/entity/training">
       Training
     </MenuItem>

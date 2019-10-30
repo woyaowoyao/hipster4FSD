@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ibm.sp.gateway</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>gateway-jwt2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Gateway</name>
+    <name>Gateway2</name>
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
