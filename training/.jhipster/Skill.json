@@ -1,0 +1,33 @@
+{
+    "name": "Skill",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preprequisites",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191029122259",
+    "javadoc": "Skill entity.\\n@author full stack trainning laidongshi.",
+    "entityTableName": "skill",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "training",
+    "applications": "*",
+    "microserviceName": "training"
+}
