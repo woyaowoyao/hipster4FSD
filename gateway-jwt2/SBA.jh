@@ -1,0 +1,109 @@
+/**
+ * Training entity.
+ * @author full stack trainning laidongshi.
+ */
+entity Training {
+	id Long,
+	status TrainStatus  required,
+    commissionAmount Float required,
+	avgRating Integer ,
+	startDate String  required,
+	endDate String  required,
+	startTime String  required,
+	endTime String  required,
+	mentorId Long required,
+    mentorName String required,
+    skillName String required,
+    fees Float required,
+	remarks String
+}
+
+
+/**
+ * TrainingRecord entity.
+ * @author full stack trainning laidongshi.
+ */
+entity TrainingRecord {
+	id Long,
+	status TrainRecordStatus  required,
+	progress Integer required,
+    commissionAmount Float required,
+	avgRating Float required,
+	startDate String  required,
+	endDate String  required,
+	startTime String  required,
+	endTime String  required,
+	amountReceived Float required,    
+    userName String required,	   
+    skillName String required,
+    fees Float required,
+	remarks String
+}
+
+
+/**
+ * PaymentRecord entity.
+ * @author full stack trainning laidongshi.
+ */
+entity PaymentRecord {
+	id Long,
+	txnType PayTraType required,
+    amount Float required,
+    mentorId Long required,
+    mentorName String required,
+    trainingId Long required,
+    skillName String required,
+    totalAmountToMentor Float required,
+	remarks String
+}
+
+entity Member {
+	id Long,
+	name String required
+}
+
+
+/**
+ * Skill entity.
+ * @author full stack trainning laidongshi.
+ */
+entity Skill {
+	id Long,
+	name String  required,
+	toc String  ,
+	preprequisites String  
+}
+enum TrainStatus {
+	Active, Inactive
+}
+enum PayTraType {
+	PAID, ISSUED, CANCELLED
+}
+enum TrainRecordStatus {
+	Propose,Progress, Completed
+}
+relationship ManyToOne {
+	TrainingRecord{training} to Training
+}
+relationship ManyToOne {
+	TrainingRecord{skill} to Skill
+}
+relationship OneToOne {
+	TrainingRecord{user} to Member
+}
+relationship OneToOne {
+	PaymentRecord{user} to Member
+}
+// Set pagination options
+paginate TrainingRecord with infinite-scroll
+paginate TrainingRecord with pagination
+
+
+// Set pagination options
+paginate Skill with infinite-scroll
+paginate Skill with pagination
+
+//  Data Transfert Objects (DTO)
+// dto * with mapstruct
+service all with serviceImpl
+
