@@ -89,6 +89,9 @@ export class PaymentRecord extends React.Component<IPaymentRecordProps, IPayment
                   <th className="hand" onClick={this.sort('remarks')}>
                     Remarks <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th>
+                    User <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -108,6 +111,7 @@ export class PaymentRecord extends React.Component<IPaymentRecordProps, IPayment
                     <td>{paymentRecord.skillName}</td>
                     <td>{paymentRecord.totalAmountToMentor}</td>
                     <td>{paymentRecord.remarks}</td>
+                    <td>{paymentRecord.user ? <Link to={`member/${paymentRecord.user.id}`}>{paymentRecord.user.id}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${paymentRecord.id}`} color="info" size="sm">

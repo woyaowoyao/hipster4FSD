@@ -58,6 +58,8 @@ export class PaymentRecordDetail extends React.Component<IPaymentRecordDetailPro
               <span id="remarks">Remarks</span>
             </dt>
             <dd>{paymentRecordEntity.remarks}</dd>
+            <dt>User</dt>
+            <dd>{paymentRecordEntity.user ? paymentRecordEntity.user.id : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/payment-record" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

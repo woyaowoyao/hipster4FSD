@@ -1,11 +1,11 @@
 id;txn_type;amount;mentor_id;mentor_name;training_id;skill_name;total_amount_to_mentor;remarks
-1;mobile Fish;77969;59865;Table Computer;5808;FTP Savings Account;70807;Movies Producer
-2;Implementation Electronics Officer;61748;30424;Albania web-readiness;29122;Investment Account Steel;29214;24/7 Common bluetooth
-3;syndicate;98323;59241;Refined Rubber Chicken Table;6505;Factors;96563;cross-platform access
-4;Public-key;24102;44015;Rubber Buckinghamshire Games;90932;Digitized invoice;31171;Costa Rica Mayotte
-5;Industrial;84228;77513;Markets Chief;59789;National Awesome sky blue;4522;software scale interactive
-6;Louisiana Specialist Home Loan Account;27599;14092;back-end;7455;Administrator;77224;orange Books
-7;magenta monitor 1080p;60595;7404;world-class Frozen IB;62329;archive Fantastic Plastic Chicken;32518;pixel withdrawal
-8;Mississippi embrace Developer;84891;76078;Idaho compress Avon;52273;partnerships Grocery Intelligent;3142;withdrawal knowledge base Buckinghamshire
-9;Concrete Investment Account Saint Lucia;20306;22879;Generic neutral Salad;92969;virtual deposit;87146;digital maroon
-10;EXE projection Fresh;35629;31800;Gorgeous Profit-focused synergies;81801;SQL Games;51074;supply-chains magenta
+1;CANCELLED;77969;59865;Table Computer;5808;FTP Savings Account;70807;Movies Producer
+2;PAID;61748;30424;Albania web-readiness;29122;Investment Account Steel;29214;24/7 Common bluetooth
+3;ISSUED;98323;59241;Refined Rubber Chicken Table;6505;Factors;96563;cross-platform access
+4;ISSUED;24102;44015;Rubber Buckinghamshire Games;90932;Digitized invoice;31171;Costa Rica Mayotte
+5;CANCELLED;84228;77513;Markets Chief;59789;National Awesome sky blue;4522;software scale interactive
+6;PAID;27599;14092;back-end;7455;Administrator;77224;orange Books
+7;ISSUED;60595;7404;world-class Frozen IB;62329;archive Fantastic Plastic Chicken;32518;pixel withdrawal
+8;ISSUED;84891;76078;Idaho compress Avon;52273;partnerships Grocery Intelligent;3142;withdrawal knowledge base Buckinghamshire
+9;CANCELLED;20306;22879;Generic neutral Salad;92969;virtual deposit;87146;digital maroon
+10;ISSUED;35629;31800;Gorgeous Profit-focused synergies;81801;SQL Games;51074;supply-chains magenta

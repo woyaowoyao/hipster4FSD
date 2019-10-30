@@ -7,6 +7,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IMember } from 'app/shared/model/member.model';
+import { getEntities as getMembers } from 'app/entities/member/member.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './payment-record.reducer';
 import { IPaymentRecord } from 'app/shared/model/payment-record.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
@@ -16,12 +18,14 @@ export interface IPaymentRecordUpdateProps extends StateProps, DispatchProps, Ro
 
 export interface IPaymentRecordUpdateState {
   isNew: boolean;
+  userId: string;
 }
 
 export class PaymentRecordUpdate extends React.Component<IPaymentRecordUpdateProps, IPaymentRecordUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      userId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -38,6 +42,8 @@ export class PaymentRecordUpdate extends React.Component<IPaymentRecordUpdatePro
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getMembers();
   }
 
   saveEntity = (event, errors, values) => {
@@ -61,7 +67,7 @@ export class PaymentRecordUpdate extends React.Component<IPaymentRecordUpdatePro
   };
 
   render() {
-    const { paymentRecordEntity, loading, updating } = this.props;
+    const { paymentRecordEntity, members, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -87,14 +93,17 @@ export class PaymentRecordUpdate extends React.Component<IPaymentRecordUpdatePro
                   <Label id="txnTypeLabel" for="payment-record-txnType">
                     Txn Type
                   </Label>
-                  <AvField
+                  <AvInput
                     id="payment-record-txnType"
-                    type="text"
+                    type="select"
+                    className="form-control"
                     name="txnType"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' }
-                    }}
-                  />
+                    value={(!isNew && paymentRecordEntity.txnType) || 'PAID'}
+                  >
+                    <option value="PAID">PAID</option>
+                    <option value="ISSUED">ISSUED</option>
+                    <option value="CANCELLED">CANCELLED</option>
+                  </AvInput>
                 </AvGroup>
                 <AvGroup>
                   <Label id="amountLabel" for="payment-record-amount">
@@ -188,6 +197,19 @@ export class PaymentRecordUpdate extends React.Component<IPaymentRecordUpdatePro
                   </Label>
                   <AvField id="payment-record-remarks" type="text" name="remarks" />
                 </AvGroup>
+                <AvGroup>
+                  <Label for="payment-record-user">User</Label>
+                  <AvInput id="payment-record-user" type="select" className="form-control" name="user.id">
+                    <option value="" key="0" />
+                    {members
+                      ? members.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/payment-record" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -208,6 +230,7 @@ export class PaymentRecordUpdate extends React.Component<IPaymentRecordUpdatePro
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  members: storeState.member.entities,
   paymentRecordEntity: storeState.paymentRecord.entity,
   loading: storeState.paymentRecord.loading,
   updating: storeState.paymentRecord.updating,
@@ -215,6 +238,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getMembers,
   getEntity,
   updateEntity,
   createEntity,

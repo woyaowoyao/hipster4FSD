@@ -4,7 +4,7 @@
  */
 entity TrainingRecord {
 	id Long,
-	status String  required,
+	status TrainStatus  required,
 	progress Integer required,
     commissionAmount Float required,
 	avgRating Float required,
@@ -23,13 +23,26 @@ entity TrainingRecord {
 	remarks String
 }
 
-
-
-
+enum TrainStatus {
+	FAV, ON, END
+}
+/**
+ * Skill entity.
+ * @author full stack trainning laidongshi.
+ */
+entity Skill {
+	id Long,
+	name String  required,
+	toc String  ,
+	preprequisites String  
+}
 // Set pagination options
 paginate TrainingRecord with infinite-scroll
 paginate TrainingRecord with pagination
 
+// Set pagination options
+paginate Skill with infinite-scroll
+paginate Skill with pagination
 //  Data Transfert Objects (DTO)
 // dto * with mapstruct
 

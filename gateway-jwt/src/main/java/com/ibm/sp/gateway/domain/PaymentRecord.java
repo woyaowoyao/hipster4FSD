@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 
+import com.ibm.sp.gateway.domain.enumeration.PayTraType;
+
 /**
  * PaymentRecord entity.\n@author full stack trainning laidongshi.
  */
@@ -24,8 +26,9 @@ public class PaymentRecord implements Serializable {
     private Long id;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "txn_type", nullable = false)
-    private String txnType;
+    private PayTraType txnType;
 
     @NotNull
     @Column(name = "amount", nullable = false)
@@ -54,6 +57,10 @@ public class PaymentRecord implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Member user;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -63,16 +70,16 @@ public class PaymentRecord implements Serializable {
         this.id = id;
     }
 
-    public String getTxnType() {
+    public PayTraType getTxnType() {
         return txnType;
     }
 
-    public PaymentRecord txnType(String txnType) {
+    public PaymentRecord txnType(PayTraType txnType) {
         this.txnType = txnType;
         return this;
     }
 
-    public void setTxnType(String txnType) {
+    public void setTxnType(PayTraType txnType) {
         this.txnType = txnType;
     }
 
@@ -165,6 +172,19 @@ public class PaymentRecord implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public Member getUser() {
+        return user;
+    }
+
+    public PaymentRecord user(Member member) {
+        this.user = member;
+        return this;
+    }
+
+    public void setUser(Member member) {
+        this.user = member;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

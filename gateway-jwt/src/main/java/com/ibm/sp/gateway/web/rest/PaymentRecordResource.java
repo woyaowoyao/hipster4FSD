@@ -1,7 +1,7 @@
 package com.ibm.sp.gateway.web.rest;
 
 import com.ibm.sp.gateway.domain.PaymentRecord;
-import com.ibm.sp.gateway.repository.PaymentRecordRepository;
+import com.ibm.sp.gateway.service.PaymentRecordService;
 import com.ibm.sp.gateway.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -39,10 +39,10 @@ public class PaymentRecordResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final PaymentRecordRepository paymentRecordRepository;
+    private final PaymentRecordService paymentRecordService;
 
-    public PaymentRecordResource(PaymentRecordRepository paymentRecordRepository) {
-        this.paymentRecordRepository = paymentRecordRepository;
+    public PaymentRecordResource(PaymentRecordService paymentRecordService) {
+        this.paymentRecordService = paymentRecordService;
     }
 
     /**
@@ -58,7 +58,7 @@ public class PaymentRecordResource {
         if (paymentRecord.getId() != null) {
             throw new BadRequestAlertException("A new paymentRecord cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        PaymentRecord result = paymentRecordRepository.save(paymentRecord);
+        PaymentRecord result = paymentRecordService.save(paymentRecord);
         return ResponseEntity.created(new URI("/api/payment-records/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -79,7 +79,7 @@ public class PaymentRecordResource {
         if (paymentRecord.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        PaymentRecord result = paymentRecordRepository.save(paymentRecord);
+        PaymentRecord result = paymentRecordService.save(paymentRecord);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, paymentRecord.getId().toString()))
             .body(result);
@@ -96,7 +96,7 @@ public class PaymentRecordResource {
     @GetMapping("/payment-records")
     public ResponseEntity<List<PaymentRecord>> getAllPaymentRecords(Pageable pageable) {
         log.debug("REST request to get a page of PaymentRecords");
-        Page<PaymentRecord> page = paymentRecordRepository.findAll(pageable);
+        Page<PaymentRecord> page = paymentRecordService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -110,7 +110,7 @@ public class PaymentRecordResource {
     @GetMapping("/payment-records/{id}")
     public ResponseEntity<PaymentRecord> getPaymentRecord(@PathVariable Long id) {
         log.debug("REST request to get PaymentRecord : {}", id);
-        Optional<PaymentRecord> paymentRecord = paymentRecordRepository.findById(id);
+        Optional<PaymentRecord> paymentRecord = paymentRecordService.findOne(id);
         return ResponseUtil.wrapOrNotFound(paymentRecord);
     }
 
@@ -123,7 +123,7 @@ public class PaymentRecordResource {
     @DeleteMapping("/payment-records/{id}")
     public ResponseEntity<Void> deletePaymentRecord(@PathVariable Long id) {
         log.debug("REST request to delete PaymentRecord : {}", id);
-        paymentRecordRepository.deleteById(id);
+        paymentRecordService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 }

@@ -72,7 +72,7 @@ class PaymentRecordGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
-                , "txnType":"SAMPLE_TEXT"
+                , "txnType":"PAID"
                 , "amount":null
                 , "mentorId":null
                 , "mentorName":"SAMPLE_TEXT"

@@ -3,6 +3,7 @@ package com.ibm.sp.gateway.web.rest;
 import com.ibm.sp.gateway.GatewayApp;
 import com.ibm.sp.gateway.domain.PaymentRecord;
 import com.ibm.sp.gateway.repository.PaymentRecordRepository;
+import com.ibm.sp.gateway.service.PaymentRecordService;
 import com.ibm.sp.gateway.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,14 +28,15 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.ibm.sp.gateway.domain.enumeration.PayTraType;
 /**
  * Integration tests for the {@link PaymentRecordResource} REST controller.
  */
 @SpringBootTest(classes = GatewayApp.class)
 public class PaymentRecordResourceIT {
 
-    private static final String DEFAULT_TXN_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_TXN_TYPE = "BBBBBBBBBB";
+    private static final PayTraType DEFAULT_TXN_TYPE = PayTraType.PAID;
+    private static final PayTraType UPDATED_TXN_TYPE = PayTraType.ISSUED;
 
     private static final Float DEFAULT_AMOUNT = 1F;
     private static final Float UPDATED_AMOUNT = 2F;
@@ -61,6 +63,9 @@ public class PaymentRecordResourceIT {
     private PaymentRecordRepository paymentRecordRepository;
 
     @Autowired
+    private PaymentRecordService paymentRecordService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -82,7 +87,7 @@ public class PaymentRecordResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PaymentRecordResource paymentRecordResource = new PaymentRecordResource(paymentRecordRepository);
+        final PaymentRecordResource paymentRecordResource = new PaymentRecordResource(paymentRecordService);
         this.restPaymentRecordMockMvc = MockMvcBuilders.standaloneSetup(paymentRecordResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -315,7 +320,7 @@ public class PaymentRecordResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(paymentRecord.getId().intValue())))
-            .andExpect(jsonPath("$.[*].txnType").value(hasItem(DEFAULT_TXN_TYPE)))
+            .andExpect(jsonPath("$.[*].txnType").value(hasItem(DEFAULT_TXN_TYPE.toString())))
             .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].mentorId").value(hasItem(DEFAULT_MENTOR_ID.intValue())))
             .andExpect(jsonPath("$.[*].mentorName").value(hasItem(DEFAULT_MENTOR_NAME)))
@@ -336,7 +341,7 @@ public class PaymentRecordResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(paymentRecord.getId().intValue()))
-            .andExpect(jsonPath("$.txnType").value(DEFAULT_TXN_TYPE))
+            .andExpect(jsonPath("$.txnType").value(DEFAULT_TXN_TYPE.toString()))
             .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.doubleValue()))
             .andExpect(jsonPath("$.mentorId").value(DEFAULT_MENTOR_ID.intValue()))
             .andExpect(jsonPath("$.mentorName").value(DEFAULT_MENTOR_NAME))
@@ -358,7 +363,7 @@ public class PaymentRecordResourceIT {
     @Transactional
     public void updatePaymentRecord() throws Exception {
         // Initialize the database
-        paymentRecordRepository.saveAndFlush(paymentRecord);
+        paymentRecordService.save(paymentRecord);
 
         int databaseSizeBeforeUpdate = paymentRecordRepository.findAll().size();
 
@@ -417,7 +422,7 @@ public class PaymentRecordResourceIT {
     @Transactional
     public void deletePaymentRecord() throws Exception {
         // Initialize the database
-        paymentRecordRepository.saveAndFlush(paymentRecord);
+        paymentRecordService.save(paymentRecord);
 
         int databaseSizeBeforeDelete = paymentRecordRepository.findAll().size();
 
