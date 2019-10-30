@@ -27,6 +27,10 @@ import skill, {
 import member, {
   MemberState
 } from 'app/entities/member/member.reducer';
+// prettier-ignore
+import training, {
+  TrainingState
+} from 'app/entities/training/training.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -43,6 +47,7 @@ export interface IRootState {
   readonly trainingRecord: TrainingRecordState;
   readonly skill: SkillState;
   readonly member: MemberState;
+  readonly training: TrainingState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -61,6 +66,7 @@ const rootReducer = combineReducers<IRootState>({
   trainingRecord,
   skill,
   member,
+  training,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

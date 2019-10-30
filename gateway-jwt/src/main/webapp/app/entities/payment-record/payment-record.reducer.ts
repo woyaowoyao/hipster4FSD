@@ -21,7 +21,6 @@ const initialState = {
   entities: [] as ReadonlyArray<IPaymentRecord>,
   entity: defaultValue,
   updating: false,
-  totalItems: 0,
   updateSuccess: false
 };
 
@@ -64,8 +63,7 @@ export default (state: PaymentRecordState = initialState, action): PaymentRecord
       return {
         ...state,
         loading: false,
-        entities: action.payload.data,
-        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
+        entities: action.payload.data
       };
     case SUCCESS(ACTION_TYPES.FETCH_PAYMENTRECORD):
       return {
@@ -101,13 +99,10 @@ const apiUrl = 'api/payment-records';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IPaymentRecord> = (page, size, sort) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
-  return {
-    type: ACTION_TYPES.FETCH_PAYMENTRECORD_LIST,
-    payload: axios.get<IPaymentRecord>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
-  };
-};
+export const getEntities: ICrudGetAllAction<IPaymentRecord> = (page, size, sort) => ({
+  type: ACTION_TYPES.FETCH_PAYMENTRECORD_LIST,
+  payload: axios.get<IPaymentRecord>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
+});
 
 export const getEntity: ICrudGetAction<IPaymentRecord> = id => {
   const requestUrl = `${apiUrl}/${id}`;

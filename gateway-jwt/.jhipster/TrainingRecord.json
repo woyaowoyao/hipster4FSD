@@ -3,7 +3,8 @@
     "fields": [
         {
             "fieldName": "status",
-            "fieldType": "String",
+            "fieldType": "TrainRecordStatus",
+            "fieldValues": "Propose,Progress,Completed",
             "fieldValidateRules": [
                 "required"
             ]
@@ -79,20 +80,6 @@
             ]
         },
         {
-            "fieldName": "mentorId",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "mentorName",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "trainingId",
             "fieldType": "Long",
             "fieldValidateRules": [
@@ -118,13 +105,36 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
-    "changelogDate": "20191029072618",
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "member",
+            "otherEntityRelationshipName": "trainingRecord",
+            "relationshipName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "training",
+            "otherEntityRelationshipName": "trainingRecord",
+            "relationshipName": "training",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "skill",
+            "otherEntityRelationshipName": "trainingRecord",
+            "relationshipName": "skill",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191030120542",
     "javadoc": "TrainingRecord entity.\\n@author full stack trainning laidongshi.",
     "entityTableName": "training_record",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

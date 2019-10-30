@@ -1,5 +1,4 @@
 export const enum TrainStatus {
-  FAV = 'FAV',
-  ON = 'ON',
-  END = 'END'
+  Active = 'Active',
+  Inactive = 'Inactive'
 }

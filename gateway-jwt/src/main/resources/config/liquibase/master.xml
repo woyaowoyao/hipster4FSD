@@ -18,7 +18,16 @@
     <include file="config/liquibase/changelog/20191029072618_added_entity_TrainingRecord.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191029122641_added_entity_Skill.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191029145903_added_entity_Member.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030114618_added_entity_Training.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120541_added_entity_Training.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120542_added_entity_TrainingRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120543_added_entity_PaymentRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120544_added_entity_Member.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120545_added_entity_Skill.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20191028150822_added_entity_constraints_PaymentRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191029072618_added_entity_constraints_TrainingRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120542_added_entity_constraints_TrainingRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191030120543_added_entity_constraints_PaymentRecord.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -71,14 +71,6 @@ export class TrainingRecordDetail extends React.Component<ITrainingRecordDetailP
             </dt>
             <dd>{trainingRecordEntity.userName}</dd>
             <dt>
-              <span id="mentorId">Mentor Id</span>
-            </dt>
-            <dd>{trainingRecordEntity.mentorId}</dd>
-            <dt>
-              <span id="mentorName">Mentor Name</span>
-            </dt>
-            <dd>{trainingRecordEntity.mentorName}</dd>
-            <dt>
               <span id="trainingId">Training Id</span>
             </dt>
             <dd>{trainingRecordEntity.trainingId}</dd>
@@ -94,6 +86,12 @@ export class TrainingRecordDetail extends React.Component<ITrainingRecordDetailP
               <span id="remarks">Remarks</span>
             </dt>
             <dd>{trainingRecordEntity.remarks}</dd>
+            <dt>User</dt>
+            <dd>{trainingRecordEntity.user ? trainingRecordEntity.user.id : ''}</dd>
+            <dt>Training</dt>
+            <dd>{trainingRecordEntity.training ? trainingRecordEntity.training.id : ''}</dd>
+            <dt>Skill</dt>
+            <dd>{trainingRecordEntity.skill ? trainingRecordEntity.skill.id : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/training-record" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

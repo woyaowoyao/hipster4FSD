@@ -72,7 +72,7 @@ class TrainingRecordGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
-                , "status":"SAMPLE_TEXT"
+                , "status":"Propose"
                 , "progress":"0"
                 , "commissionAmount":null
                 , "avgRating":null
@@ -83,8 +83,6 @@ class TrainingRecordGatlingTest extends Simulation {
                 , "amountReceived":null
                 , "userId":null
                 , "userName":"SAMPLE_TEXT"
-                , "mentorId":null
-                , "mentorName":"SAMPLE_TEXT"
                 , "trainingId":null
                 , "skillName":"SAMPLE_TEXT"
                 , "fees":null

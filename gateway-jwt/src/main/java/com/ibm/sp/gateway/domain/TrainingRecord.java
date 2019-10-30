@@ -1,4 +1,5 @@
 package com.ibm.sp.gateway.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+
+import com.ibm.sp.gateway.domain.enumeration.TrainRecordStatus;
 
 /**
  * TrainingRecord entity.\n@author full stack trainning laidongshi.
@@ -24,8 +27,9 @@ public class TrainingRecord implements Serializable {
     private Long id;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private TrainRecordStatus status;
 
     @NotNull
     @Column(name = "progress", nullable = false)
@@ -68,14 +72,6 @@ public class TrainingRecord implements Serializable {
     private String userName;
 
     @NotNull
-    @Column(name = "mentor_id", nullable = false)
-    private Long mentorId;
-
-    @NotNull
-    @Column(name = "mentor_name", nullable = false)
-    private String mentorName;
-
-    @NotNull
     @Column(name = "training_id", nullable = false)
     private Long trainingId;
 
@@ -90,6 +86,18 @@ public class TrainingRecord implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Member user;
+
+    @ManyToOne
+    @JsonIgnoreProperties("trainingRecords")
+    private Training training;
+
+    @ManyToOne
+    @JsonIgnoreProperties("trainingRecords")
+    private Skill skill;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -99,16 +107,16 @@ public class TrainingRecord implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
+    public TrainRecordStatus getStatus() {
         return status;
     }
 
-    public TrainingRecord status(String status) {
+    public TrainingRecord status(TrainRecordStatus status) {
         this.status = status;
         return this;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TrainRecordStatus status) {
         this.status = status;
     }
 
@@ -242,32 +250,6 @@ public class TrainingRecord implements Serializable {
         this.userName = userName;
     }
 
-    public Long getMentorId() {
-        return mentorId;
-    }
-
-    public TrainingRecord mentorId(Long mentorId) {
-        this.mentorId = mentorId;
-        return this;
-    }
-
-    public void setMentorId(Long mentorId) {
-        this.mentorId = mentorId;
-    }
-
-    public String getMentorName() {
-        return mentorName;
-    }
-
-    public TrainingRecord mentorName(String mentorName) {
-        this.mentorName = mentorName;
-        return this;
-    }
-
-    public void setMentorName(String mentorName) {
-        this.mentorName = mentorName;
-    }
-
     public Long getTrainingId() {
         return trainingId;
     }
@@ -319,6 +301,45 @@ public class TrainingRecord implements Serializable {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public Member getUser() {
+        return user;
+    }
+
+    public TrainingRecord user(Member member) {
+        this.user = member;
+        return this;
+    }
+
+    public void setUser(Member member) {
+        this.user = member;
+    }
+
+    public Training getTraining() {
+        return training;
+    }
+
+    public TrainingRecord training(Training training) {
+        this.training = training;
+        return this;
+    }
+
+    public void setTraining(Training training) {
+        this.training = training;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public TrainingRecord skill(Skill skill) {
+        this.skill = skill;
+        return this;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -352,8 +373,6 @@ public class TrainingRecord implements Serializable {
             ", amountReceived=" + getAmountReceived() +
             ", userId=" + getUserId() +
             ", userName='" + getUserName() + "'" +
-            ", mentorId=" + getMentorId() +
-            ", mentorName='" + getMentorName() + "'" +
             ", trainingId=" + getTrainingId() +
             ", skillName='" + getSkillName() + "'" +
             ", fees=" + getFees() +

@@ -66,11 +66,11 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20191028150822",
+    "changelogDate": "20191030120543",
     "javadoc": "PaymentRecord entity.\\n@author full stack trainning laidongshi.",
     "entityTableName": "payment_record",
     "dto": "no",
-    "pagination": "pagination",
+    "pagination": "no",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

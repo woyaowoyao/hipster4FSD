@@ -8,6 +8,7 @@ import PaymentRecord from './payment-record';
 import TrainingRecord from './training-record';
 import Skill from './skill';
 import Member from './member';
+import Training from './training';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -18,6 +19,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}/training-record`} component={TrainingRecord} />
       <ErrorBoundaryRoute path={`${match.url}/skill`} component={Skill} />
       <ErrorBoundaryRoute path={`${match.url}/member`} component={Member} />
+      <ErrorBoundaryRoute path={`${match.url}/training`} component={Training} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

@@ -98,12 +98,6 @@ export class TrainingRecord extends React.Component<ITrainingRecordProps, ITrain
                   <th className="hand" onClick={this.sort('userName')}>
                     User Name <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('mentorId')}>
-                    Mentor Id <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('mentorName')}>
-                    Mentor Name <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('trainingId')}>
                     Training Id <FontAwesomeIcon icon="sort" />
                   </th>
@@ -115,6 +109,15 @@ export class TrainingRecord extends React.Component<ITrainingRecordProps, ITrain
                   </th>
                   <th className="hand" onClick={this.sort('remarks')}>
                     Remarks <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th>
+                    User <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th>
+                    Training <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th>
+                    Skill <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -138,12 +141,19 @@ export class TrainingRecord extends React.Component<ITrainingRecordProps, ITrain
                     <td>{trainingRecord.amountReceived}</td>
                     <td>{trainingRecord.userId}</td>
                     <td>{trainingRecord.userName}</td>
-                    <td>{trainingRecord.mentorId}</td>
-                    <td>{trainingRecord.mentorName}</td>
                     <td>{trainingRecord.trainingId}</td>
                     <td>{trainingRecord.skillName}</td>
                     <td>{trainingRecord.fees}</td>
                     <td>{trainingRecord.remarks}</td>
+                    <td>{trainingRecord.user ? <Link to={`member/${trainingRecord.user.id}`}>{trainingRecord.user.id}</Link> : ''}</td>
+                    <td>
+                      {trainingRecord.training ? (
+                        <Link to={`training/${trainingRecord.training.id}`}>{trainingRecord.training.id}</Link>
+                      ) : (
+                        ''
+                      )}
+                    </td>
+                    <td>{trainingRecord.skill ? <Link to={`skill/${trainingRecord.skill.id}`}>{trainingRecord.skill.id}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${trainingRecord.id}`} color="info" size="sm">

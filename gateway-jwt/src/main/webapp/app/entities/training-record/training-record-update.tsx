@@ -7,6 +7,12 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IMember } from 'app/shared/model/member.model';
+import { getEntities as getMembers } from 'app/entities/member/member.reducer';
+import { ITraining } from 'app/shared/model/training.model';
+import { getEntities as getTrainings } from 'app/entities/training/training.reducer';
+import { ISkill } from 'app/shared/model/skill.model';
+import { getEntities as getSkills } from 'app/entities/skill/skill.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './training-record.reducer';
 import { ITrainingRecord } from 'app/shared/model/training-record.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
@@ -16,12 +22,18 @@ export interface ITrainingRecordUpdateProps extends StateProps, DispatchProps, R
 
 export interface ITrainingRecordUpdateState {
   isNew: boolean;
+  userId: string;
+  trainingId: string;
+  skillId: string;
 }
 
 export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateProps, ITrainingRecordUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      userId: '0',
+      trainingId: '0',
+      skillId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -38,6 +50,10 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getMembers();
+    this.props.getTrainings();
+    this.props.getSkills();
   }
 
   saveEntity = (event, errors, values) => {
@@ -61,7 +77,7 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
   };
 
   render() {
-    const { trainingRecordEntity, loading, updating } = this.props;
+    const { trainingRecordEntity, members, trainings, skills, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -87,14 +103,17 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
                   <Label id="statusLabel" for="training-record-status">
                     Status
                   </Label>
-                  <AvField
+                  <AvInput
                     id="training-record-status"
-                    type="text"
+                    type="select"
+                    className="form-control"
                     name="status"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' }
-                    }}
-                  />
+                    value={(!isNew && trainingRecordEntity.status) || 'Propose'}
+                  >
+                    <option value="Propose">Propose</option>
+                    <option value="Progress">Progress</option>
+                    <option value="Completed">Completed</option>
+                  </AvInput>
                 </AvGroup>
                 <AvGroup>
                   <Label id="progressLabel" for="training-record-progress">
@@ -237,34 +256,6 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="mentorIdLabel" for="training-record-mentorId">
-                    Mentor Id
-                  </Label>
-                  <AvField
-                    id="training-record-mentorId"
-                    type="string"
-                    className="form-control"
-                    name="mentorId"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' },
-                      number: { value: true, errorMessage: 'This field should be a number.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="mentorNameLabel" for="training-record-mentorName">
-                    Mentor Name
-                  </Label>
-                  <AvField
-                    id="training-record-mentorName"
-                    type="text"
-                    name="mentorName"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
                   <Label id="trainingIdLabel" for="training-record-trainingId">
                     Training Id
                   </Label>
@@ -313,6 +304,45 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
                   </Label>
                   <AvField id="training-record-remarks" type="text" name="remarks" />
                 </AvGroup>
+                <AvGroup>
+                  <Label for="training-record-user">User</Label>
+                  <AvInput id="training-record-user" type="select" className="form-control" name="user.id">
+                    <option value="" key="0" />
+                    {members
+                      ? members.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="training-record-training">Training</Label>
+                  <AvInput id="training-record-training" type="select" className="form-control" name="training.id">
+                    <option value="" key="0" />
+                    {trainings
+                      ? trainings.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="training-record-skill">Skill</Label>
+                  <AvInput id="training-record-skill" type="select" className="form-control" name="skill.id">
+                    <option value="" key="0" />
+                    {skills
+                      ? skills.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/training-record" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -333,6 +363,9 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  members: storeState.member.entities,
+  trainings: storeState.training.entities,
+  skills: storeState.skill.entities,
   trainingRecordEntity: storeState.trainingRecord.entity,
   loading: storeState.trainingRecord.loading,
   updating: storeState.trainingRecord.updating,
@@ -340,6 +373,9 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getMembers,
+  getTrainings,
+  getSkills,
   getEntity,
   updateEntity,
   createEntity,

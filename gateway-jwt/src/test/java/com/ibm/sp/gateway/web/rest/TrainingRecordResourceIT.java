@@ -3,6 +3,7 @@ package com.ibm.sp.gateway.web.rest;
 import com.ibm.sp.gateway.GatewayApp;
 import com.ibm.sp.gateway.domain.TrainingRecord;
 import com.ibm.sp.gateway.repository.TrainingRecordRepository;
+import com.ibm.sp.gateway.service.TrainingRecordService;
 import com.ibm.sp.gateway.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,14 +28,15 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.ibm.sp.gateway.domain.enumeration.TrainRecordStatus;
 /**
  * Integration tests for the {@link TrainingRecordResource} REST controller.
  */
 @SpringBootTest(classes = GatewayApp.class)
 public class TrainingRecordResourceIT {
 
-    private static final String DEFAULT_STATUS = "AAAAAAAAAA";
-    private static final String UPDATED_STATUS = "BBBBBBBBBB";
+    private static final TrainRecordStatus DEFAULT_STATUS = TrainRecordStatus.Propose;
+    private static final TrainRecordStatus UPDATED_STATUS = TrainRecordStatus.Progress;
 
     private static final Integer DEFAULT_PROGRESS = 1;
     private static final Integer UPDATED_PROGRESS = 2;
@@ -66,12 +68,6 @@ public class TrainingRecordResourceIT {
     private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
     private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_MENTOR_ID = 1L;
-    private static final Long UPDATED_MENTOR_ID = 2L;
-
-    private static final String DEFAULT_MENTOR_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_MENTOR_NAME = "BBBBBBBBBB";
-
     private static final Long DEFAULT_TRAINING_ID = 1L;
     private static final Long UPDATED_TRAINING_ID = 2L;
 
@@ -86,6 +82,9 @@ public class TrainingRecordResourceIT {
 
     @Autowired
     private TrainingRecordRepository trainingRecordRepository;
+
+    @Autowired
+    private TrainingRecordService trainingRecordService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -109,7 +108,7 @@ public class TrainingRecordResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TrainingRecordResource trainingRecordResource = new TrainingRecordResource(trainingRecordRepository);
+        final TrainingRecordResource trainingRecordResource = new TrainingRecordResource(trainingRecordService);
         this.restTrainingRecordMockMvc = MockMvcBuilders.standaloneSetup(trainingRecordResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -137,8 +136,6 @@ public class TrainingRecordResourceIT {
             .amountReceived(DEFAULT_AMOUNT_RECEIVED)
             .userId(DEFAULT_USER_ID)
             .userName(DEFAULT_USER_NAME)
-            .mentorId(DEFAULT_MENTOR_ID)
-            .mentorName(DEFAULT_MENTOR_NAME)
             .trainingId(DEFAULT_TRAINING_ID)
             .skillName(DEFAULT_SKILL_NAME)
             .fees(DEFAULT_FEES)
@@ -164,8 +161,6 @@ public class TrainingRecordResourceIT {
             .amountReceived(UPDATED_AMOUNT_RECEIVED)
             .userId(UPDATED_USER_ID)
             .userName(UPDATED_USER_NAME)
-            .mentorId(UPDATED_MENTOR_ID)
-            .mentorName(UPDATED_MENTOR_NAME)
             .trainingId(UPDATED_TRAINING_ID)
             .skillName(UPDATED_SKILL_NAME)
             .fees(UPDATED_FEES)
@@ -204,8 +199,6 @@ public class TrainingRecordResourceIT {
         assertThat(testTrainingRecord.getAmountReceived()).isEqualTo(DEFAULT_AMOUNT_RECEIVED);
         assertThat(testTrainingRecord.getUserId()).isEqualTo(DEFAULT_USER_ID);
         assertThat(testTrainingRecord.getUserName()).isEqualTo(DEFAULT_USER_NAME);
-        assertThat(testTrainingRecord.getMentorId()).isEqualTo(DEFAULT_MENTOR_ID);
-        assertThat(testTrainingRecord.getMentorName()).isEqualTo(DEFAULT_MENTOR_NAME);
         assertThat(testTrainingRecord.getTrainingId()).isEqualTo(DEFAULT_TRAINING_ID);
         assertThat(testTrainingRecord.getSkillName()).isEqualTo(DEFAULT_SKILL_NAME);
         assertThat(testTrainingRecord.getFees()).isEqualTo(DEFAULT_FEES);
@@ -432,42 +425,6 @@ public class TrainingRecordResourceIT {
 
     @Test
     @Transactional
-    public void checkMentorIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = trainingRecordRepository.findAll().size();
-        // set the field null
-        trainingRecord.setMentorId(null);
-
-        // Create the TrainingRecord, which fails.
-
-        restTrainingRecordMockMvc.perform(post("/api/training-records")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(trainingRecord)))
-            .andExpect(status().isBadRequest());
-
-        List<TrainingRecord> trainingRecordList = trainingRecordRepository.findAll();
-        assertThat(trainingRecordList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkMentorNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = trainingRecordRepository.findAll().size();
-        // set the field null
-        trainingRecord.setMentorName(null);
-
-        // Create the TrainingRecord, which fails.
-
-        restTrainingRecordMockMvc.perform(post("/api/training-records")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(trainingRecord)))
-            .andExpect(status().isBadRequest());
-
-        List<TrainingRecord> trainingRecordList = trainingRecordRepository.findAll();
-        assertThat(trainingRecordList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkTrainingIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = trainingRecordRepository.findAll().size();
         // set the field null
@@ -531,7 +488,7 @@ public class TrainingRecordResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(trainingRecord.getId().intValue())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].progress").value(hasItem(DEFAULT_PROGRESS)))
             .andExpect(jsonPath("$.[*].commissionAmount").value(hasItem(DEFAULT_COMMISSION_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].avgRating").value(hasItem(DEFAULT_AVG_RATING.doubleValue())))
@@ -542,8 +499,6 @@ public class TrainingRecordResourceIT {
             .andExpect(jsonPath("$.[*].amountReceived").value(hasItem(DEFAULT_AMOUNT_RECEIVED.doubleValue())))
             .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
             .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME)))
-            .andExpect(jsonPath("$.[*].mentorId").value(hasItem(DEFAULT_MENTOR_ID.intValue())))
-            .andExpect(jsonPath("$.[*].mentorName").value(hasItem(DEFAULT_MENTOR_NAME)))
             .andExpect(jsonPath("$.[*].trainingId").value(hasItem(DEFAULT_TRAINING_ID.intValue())))
             .andExpect(jsonPath("$.[*].skillName").value(hasItem(DEFAULT_SKILL_NAME)))
             .andExpect(jsonPath("$.[*].fees").value(hasItem(DEFAULT_FEES.doubleValue())))
@@ -561,7 +516,7 @@ public class TrainingRecordResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(trainingRecord.getId().intValue()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.progress").value(DEFAULT_PROGRESS))
             .andExpect(jsonPath("$.commissionAmount").value(DEFAULT_COMMISSION_AMOUNT.doubleValue()))
             .andExpect(jsonPath("$.avgRating").value(DEFAULT_AVG_RATING.doubleValue()))
@@ -572,8 +527,6 @@ public class TrainingRecordResourceIT {
             .andExpect(jsonPath("$.amountReceived").value(DEFAULT_AMOUNT_RECEIVED.doubleValue()))
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()))
             .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME))
-            .andExpect(jsonPath("$.mentorId").value(DEFAULT_MENTOR_ID.intValue()))
-            .andExpect(jsonPath("$.mentorName").value(DEFAULT_MENTOR_NAME))
             .andExpect(jsonPath("$.trainingId").value(DEFAULT_TRAINING_ID.intValue()))
             .andExpect(jsonPath("$.skillName").value(DEFAULT_SKILL_NAME))
             .andExpect(jsonPath("$.fees").value(DEFAULT_FEES.doubleValue()))
@@ -592,7 +545,7 @@ public class TrainingRecordResourceIT {
     @Transactional
     public void updateTrainingRecord() throws Exception {
         // Initialize the database
-        trainingRecordRepository.saveAndFlush(trainingRecord);
+        trainingRecordService.save(trainingRecord);
 
         int databaseSizeBeforeUpdate = trainingRecordRepository.findAll().size();
 
@@ -612,8 +565,6 @@ public class TrainingRecordResourceIT {
             .amountReceived(UPDATED_AMOUNT_RECEIVED)
             .userId(UPDATED_USER_ID)
             .userName(UPDATED_USER_NAME)
-            .mentorId(UPDATED_MENTOR_ID)
-            .mentorName(UPDATED_MENTOR_NAME)
             .trainingId(UPDATED_TRAINING_ID)
             .skillName(UPDATED_SKILL_NAME)
             .fees(UPDATED_FEES)
@@ -639,8 +590,6 @@ public class TrainingRecordResourceIT {
         assertThat(testTrainingRecord.getAmountReceived()).isEqualTo(UPDATED_AMOUNT_RECEIVED);
         assertThat(testTrainingRecord.getUserId()).isEqualTo(UPDATED_USER_ID);
         assertThat(testTrainingRecord.getUserName()).isEqualTo(UPDATED_USER_NAME);
-        assertThat(testTrainingRecord.getMentorId()).isEqualTo(UPDATED_MENTOR_ID);
-        assertThat(testTrainingRecord.getMentorName()).isEqualTo(UPDATED_MENTOR_NAME);
         assertThat(testTrainingRecord.getTrainingId()).isEqualTo(UPDATED_TRAINING_ID);
         assertThat(testTrainingRecord.getSkillName()).isEqualTo(UPDATED_SKILL_NAME);
         assertThat(testTrainingRecord.getFees()).isEqualTo(UPDATED_FEES);
@@ -669,7 +618,7 @@ public class TrainingRecordResourceIT {
     @Transactional
     public void deleteTrainingRecord() throws Exception {
         // Initialize the database
-        trainingRecordRepository.saveAndFlush(trainingRecord);
+        trainingRecordService.save(trainingRecord);
 
         int databaseSizeBeforeDelete = trainingRecordRepository.findAll().size();
 

@@ -1,7 +1,7 @@
 package com.ibm.sp.gateway.web.rest;
 
 import com.ibm.sp.gateway.domain.Skill;
-import com.ibm.sp.gateway.repository.SkillRepository;
+import com.ibm.sp.gateway.service.SkillService;
 import com.ibm.sp.gateway.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -39,10 +39,10 @@ public class SkillResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final SkillRepository skillRepository;
+    private final SkillService skillService;
 
-    public SkillResource(SkillRepository skillRepository) {
-        this.skillRepository = skillRepository;
+    public SkillResource(SkillService skillService) {
+        this.skillService = skillService;
     }
 
     /**
@@ -58,7 +58,7 @@ public class SkillResource {
         if (skill.getId() != null) {
             throw new BadRequestAlertException("A new skill cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Skill result = skillRepository.save(skill);
+        Skill result = skillService.save(skill);
         return ResponseEntity.created(new URI("/api/skills/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -79,7 +79,7 @@ public class SkillResource {
         if (skill.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Skill result = skillRepository.save(skill);
+        Skill result = skillService.save(skill);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, skill.getId().toString()))
             .body(result);
@@ -96,7 +96,7 @@ public class SkillResource {
     @GetMapping("/skills")
     public ResponseEntity<List<Skill>> getAllSkills(Pageable pageable) {
         log.debug("REST request to get a page of Skills");
-        Page<Skill> page = skillRepository.findAll(pageable);
+        Page<Skill> page = skillService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -110,7 +110,7 @@ public class SkillResource {
     @GetMapping("/skills/{id}")
     public ResponseEntity<Skill> getSkill(@PathVariable Long id) {
         log.debug("REST request to get Skill : {}", id);
-        Optional<Skill> skill = skillRepository.findById(id);
+        Optional<Skill> skill = skillService.findOne(id);
         return ResponseUtil.wrapOrNotFound(skill);
     }
 
@@ -123,7 +123,7 @@ public class SkillResource {
     @DeleteMapping("/skills/{id}")
     public ResponseEntity<Void> deleteSkill(@PathVariable Long id) {
         log.debug("REST request to delete Skill : {}", id);
-        skillRepository.deleteById(id);
+        skillService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 }

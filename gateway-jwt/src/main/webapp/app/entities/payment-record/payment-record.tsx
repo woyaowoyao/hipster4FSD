@@ -2,52 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
+import { ICrudGetAllAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './payment-record.reducer';
 import { IPaymentRecord } from 'app/shared/model/payment-record.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
-import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IPaymentRecordProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export type IPaymentRecordState = IPaginationBaseState;
-
-export class PaymentRecord extends React.Component<IPaymentRecordProps, IPaymentRecordState> {
-  state: IPaymentRecordState = {
-    ...getSortState(this.props.location, ITEMS_PER_PAGE)
-  };
-
+export class PaymentRecord extends React.Component<IPaymentRecordProps> {
   componentDidMount() {
-    this.getEntities();
+    this.props.getEntities();
   }
-
-  sort = prop => () => {
-    this.setState(
-      {
-        order: this.state.order === 'asc' ? 'desc' : 'asc',
-        sort: prop
-      },
-      () => this.sortEntities()
-    );
-  };
-
-  sortEntities() {
-    this.getEntities();
-    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
-  }
-
-  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
-
-  getEntities = () => {
-    const { activePage, itemsPerPage, sort, order } = this.state;
-    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
-  };
 
   render() {
-    const { paymentRecordList, match, totalItems } = this.props;
+    const { paymentRecordList, match } = this.props;
     return (
       <div>
         <h2 id="payment-record-heading">
@@ -62,36 +33,16 @@ export class PaymentRecord extends React.Component<IPaymentRecordProps, IPayment
             <Table responsive aria-describedby="payment-record-heading">
               <thead>
                 <tr>
-                  <th className="hand" onClick={this.sort('id')}>
-                    ID <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('txnType')}>
-                    Txn Type <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('amount')}>
-                    Amount <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('mentorId')}>
-                    Mentor Id <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('mentorName')}>
-                    Mentor Name <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('trainingId')}>
-                    Training Id <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('skillName')}>
-                    Skill Name <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('totalAmountToMentor')}>
-                    Total Amount To Mentor <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('remarks')}>
-                    Remarks <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th>
-                    User <FontAwesomeIcon icon="sort" />
-                  </th>
+                  <th>ID</th>
+                  <th>Txn Type</th>
+                  <th>Amount</th>
+                  <th>Mentor Id</th>
+                  <th>Mentor Name</th>
+                  <th>Training Id</th>
+                  <th>Skill Name</th>
+                  <th>Total Amount To Mentor</th>
+                  <th>Remarks</th>
+                  <th>User</th>
                   <th />
                 </tr>
               </thead>
@@ -133,28 +84,13 @@ export class PaymentRecord extends React.Component<IPaymentRecordProps, IPayment
             <div className="alert alert-warning">No Payment Records found</div>
           )}
         </div>
-        <div className={paymentRecordList && paymentRecordList.length > 0 ? '' : 'd-none'}>
-          <Row className="justify-content-center">
-            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} />
-          </Row>
-          <Row className="justify-content-center">
-            <JhiPagination
-              activePage={this.state.activePage}
-              onSelect={this.handlePagination}
-              maxButtons={5}
-              itemsPerPage={this.state.itemsPerPage}
-              totalItems={this.props.totalItems}
-            />
-          </Row>
-        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ paymentRecord }: IRootState) => ({
-  paymentRecordList: paymentRecord.entities,
-  totalItems: paymentRecord.totalItems
+  paymentRecordList: paymentRecord.entities
 });
 
 const mapDispatchToProps = {

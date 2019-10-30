@@ -1,7 +1,7 @@
 package com.ibm.sp.gateway.web.rest;
 
 import com.ibm.sp.gateway.domain.TrainingRecord;
-import com.ibm.sp.gateway.repository.TrainingRecordRepository;
+import com.ibm.sp.gateway.service.TrainingRecordService;
 import com.ibm.sp.gateway.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -39,10 +39,10 @@ public class TrainingRecordResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final TrainingRecordRepository trainingRecordRepository;
+    private final TrainingRecordService trainingRecordService;
 
-    public TrainingRecordResource(TrainingRecordRepository trainingRecordRepository) {
-        this.trainingRecordRepository = trainingRecordRepository;
+    public TrainingRecordResource(TrainingRecordService trainingRecordService) {
+        this.trainingRecordService = trainingRecordService;
     }
 
     /**
@@ -58,7 +58,7 @@ public class TrainingRecordResource {
         if (trainingRecord.getId() != null) {
             throw new BadRequestAlertException("A new trainingRecord cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TrainingRecord result = trainingRecordRepository.save(trainingRecord);
+        TrainingRecord result = trainingRecordService.save(trainingRecord);
         return ResponseEntity.created(new URI("/api/training-records/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -79,7 +79,7 @@ public class TrainingRecordResource {
         if (trainingRecord.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        TrainingRecord result = trainingRecordRepository.save(trainingRecord);
+        TrainingRecord result = trainingRecordService.save(trainingRecord);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, trainingRecord.getId().toString()))
             .body(result);
@@ -96,7 +96,7 @@ public class TrainingRecordResource {
     @GetMapping("/training-records")
     public ResponseEntity<List<TrainingRecord>> getAllTrainingRecords(Pageable pageable) {
         log.debug("REST request to get a page of TrainingRecords");
-        Page<TrainingRecord> page = trainingRecordRepository.findAll(pageable);
+        Page<TrainingRecord> page = trainingRecordService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -110,7 +110,7 @@ public class TrainingRecordResource {
     @GetMapping("/training-records/{id}")
     public ResponseEntity<TrainingRecord> getTrainingRecord(@PathVariable Long id) {
         log.debug("REST request to get TrainingRecord : {}", id);
-        Optional<TrainingRecord> trainingRecord = trainingRecordRepository.findById(id);
+        Optional<TrainingRecord> trainingRecord = trainingRecordService.findOne(id);
         return ResponseUtil.wrapOrNotFound(trainingRecord);
     }
 
@@ -123,7 +123,7 @@ public class TrainingRecordResource {
     @DeleteMapping("/training-records/{id}")
     public ResponseEntity<Void> deleteTrainingRecord(@PathVariable Long id) {
         log.debug("REST request to delete TrainingRecord : {}", id);
-        trainingRecordRepository.deleteById(id);
+        trainingRecordService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 }

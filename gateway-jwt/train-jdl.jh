@@ -24,7 +24,7 @@ entity TrainingRecord {
 }
 
 enum TrainStatus {
-	FAV, ON, END
+	Progress, Completed
 }
 /**
  * Skill entity.
@@ -44,7 +44,8 @@ paginate TrainingRecord with pagination
 // Set pagination options
 paginate Skill with infinite-scroll
 paginate Skill with pagination
+
 //  Data Transfert Objects (DTO)
 // dto * with mapstruct
-
+service all with serviceImpl
 

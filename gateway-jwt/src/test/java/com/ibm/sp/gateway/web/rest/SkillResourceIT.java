@@ -3,6 +3,7 @@ package com.ibm.sp.gateway.web.rest;
 import com.ibm.sp.gateway.GatewayApp;
 import com.ibm.sp.gateway.domain.Skill;
 import com.ibm.sp.gateway.repository.SkillRepository;
+import com.ibm.sp.gateway.service.SkillService;
 import com.ibm.sp.gateway.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -46,6 +47,9 @@ public class SkillResourceIT {
     private SkillRepository skillRepository;
 
     @Autowired
+    private SkillService skillService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -67,7 +71,7 @@ public class SkillResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SkillResource skillResource = new SkillResource(skillRepository);
+        final SkillResource skillResource = new SkillResource(skillService);
         this.restSkillMockMvc = MockMvcBuilders.standaloneSetup(skillResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -210,7 +214,7 @@ public class SkillResourceIT {
     @Transactional
     public void updateSkill() throws Exception {
         // Initialize the database
-        skillRepository.saveAndFlush(skill);
+        skillService.save(skill);
 
         int databaseSizeBeforeUpdate = skillRepository.findAll().size();
 
@@ -259,7 +263,7 @@ public class SkillResourceIT {
     @Transactional
     public void deleteSkill() throws Exception {
         // Initialize the database
-        skillRepository.saveAndFlush(skill);
+        skillService.save(skill);
 
         int databaseSizeBeforeDelete = skillRepository.findAll().size();
 
