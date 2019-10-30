@@ -40,6 +40,7 @@ entity Skill {
 paginate TrainingRecord with infinite-scroll
 paginate TrainingRecord with pagination
 
+
 // Set pagination options
 paginate Skill with infinite-scroll
 paginate Skill with pagination
