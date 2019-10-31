@@ -2,15 +2,15 @@ entity Mentor {
 	id Long,
 	username String  required,
 	linkedin String  ,
-	regDatetime Instant  ,
-	reg_code  String ,
-	experience Float，
+	regDatetime Instant ,
+	regCode  String ,
+	experience Float,
 	status TrainStatus  required
 }
 
 entity MentorSkill {
 	id Long,
-	selfRate  String ,
+	selfRate  String,
 	experience Float	
 }
 entity MyCalendar {
@@ -70,10 +70,6 @@ entity Member {
 	name String required
 }
 
-/**
- * Technology entity.
- * @author full stack trainning laidongshi.
- */
 entity Technology {
 	id Long,
 	name String  required,
@@ -82,7 +78,7 @@ entity Technology {
 }
 
 enum DurationType {
-	0800to1000, 1000to1200,1400to1600
+	Morning0800, Morning1000,Afternoon1400,Afternoon1600
 }
 enum MemberType {
 	Trainer, Mentor
@@ -131,15 +127,6 @@ paginate TrainingRecord with infinite-scroll
 paginate TrainingRecord with pagination
 
 // Set pagination options
-paginate Technology with infinite-scroll
-paginate Technology with pagination
-
-paginate PaymentRecord with infinite-scroll
-paginate PaymentRecord with pagination
-
-paginate Mentor with infinite-scroll
-paginate Mentor with pagination
-
 paginate Training with infinite-scroll
 paginate Training with pagination
 
