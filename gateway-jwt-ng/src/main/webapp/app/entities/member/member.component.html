@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span>Members</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-member" [routerLink]="['/member/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Member
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="members?.length === 0">
+        <span>No members found</span>
+    </div>
+    <div class="table-responsive" *ngIf="members?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span>ID</span></th>
+            <th scope="col" ><span>Type</span></th>
+            <th scope="col" ><span>User Name</span></th>
+            <th scope="col" ><span>Name</span></th>
+            <th scope="col" ><span>User</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let member of members ;trackBy: trackId">
+                <td><a [routerLink]="['/member', member.id, 'view' ]">{{member.id}}</a></td>
+                <td>{{member.type}}</td>
+                <td>{{member.userName}}</td>
+                <td>{{member.name}}</td>
+                <td>
+                    <div *ngIf="member.user">
+                        <a [routerLink]="['/member', member.user?.id, 'view' ]" >{{member.user?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/member', member.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/member', member.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/member', { outlets: { popup: member.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

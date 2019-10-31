@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span>Trainings</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-training" [routerLink]="['/training/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Training
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="trainings?.length === 0">
+        <span>No trainings found</span>
+    </div>
+    <div class="table-responsive" *ngIf="trainings?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span>ID</span></th>
+            <th scope="col" ><span>Status</span></th>
+            <th scope="col" ><span>Name</span></th>
+            <th scope="col" ><span>Commission Amount</span></th>
+            <th scope="col" ><span>Avg Rating</span></th>
+            <th scope="col" ><span>Start Date</span></th>
+            <th scope="col" ><span>End Date</span></th>
+            <th scope="col" ><span>Mentor Id</span></th>
+            <th scope="col" ><span>Mentor Name</span></th>
+            <th scope="col" ><span>Skill Name</span></th>
+            <th scope="col" ><span>Remarks</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let training of trainings ;trackBy: trackId">
+                <td><a [routerLink]="['/training', training.id, 'view' ]">{{training.id}}</a></td>
+                <td>{{training.status}}</td>
+                <td>{{training.name}}</td>
+                <td>{{training.commissionAmount}}</td>
+                <td>{{training.avgRating}}</td>
+                <td>{{training.startDate | date:'medium'}}</td>
+                <td>{{training.endDate | date:'medium'}}</td>
+                <td>{{training.mentorId}}</td>
+                <td>{{training.mentorName}}</td>
+                <td>{{training.skillName}}</td>
+                <td>{{training.remarks}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/training', training.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/training', training.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/training', { outlets: { popup: training.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
