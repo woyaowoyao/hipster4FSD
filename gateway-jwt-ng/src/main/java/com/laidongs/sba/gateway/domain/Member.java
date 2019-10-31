@@ -6,7 +6,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 
 import com.laidongs.sba.gateway.domain.enumeration.MemberType;
-
 /**
  * A Member.
  */
