@@ -306,8 +306,8 @@ export class TrainingRecordUpdate extends React.Component<ITrainingRecordUpdateP
                     <option value="" key="0" />
                     {skills
                       ? skills.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
+                          <option value={otherEntity.id} key={otherEntity.name}>
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}
