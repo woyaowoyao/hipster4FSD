@@ -14,6 +14,18 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035024_added_entity_Mentor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035025_added_entity_MentorSkill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035026_added_entity_MyCalendar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035027_added_entity_Training.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035028_added_entity_TrainingRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035029_added_entity_PaymentRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035030_added_entity_Technology.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20191102035024_added_entity_constraints_Mentor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035025_added_entity_constraints_MentorSkill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035026_added_entity_constraints_MyCalendar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035028_added_entity_constraints_TrainingRecord.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191102035029_added_entity_constraints_PaymentRecord.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

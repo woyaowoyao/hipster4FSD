@@ -1,0 +1,59 @@
+{
+    "name": "PaymentRecord",
+    "fields": [
+        {
+            "fieldName": "txnType",
+            "fieldType": "PayTraType",
+            "fieldValues": "PAID,ISSUED,CANCELLED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "totalAmountToMentor",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "issuedTime",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "paymentRecord",
+            "relationshipName": "user",
+            "otherEntityField": "userName",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191102035029",
+    "javadoc": "PaymentRecord entity.\\n@author full stack trainning laidongshi.",
+    "entityTableName": "payment_record",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

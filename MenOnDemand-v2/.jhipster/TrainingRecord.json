@@ -1,0 +1,88 @@
+{
+    "name": "TrainingRecord",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "TrainRecordStatus",
+            "fieldValues": "Propose,Progress,Completed",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "progress",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "commissionAmount",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "avgRating",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "amountReceived",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fees",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "trainingRecord",
+            "relationshipName": "user",
+            "otherEntityField": "userName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "training",
+            "otherEntityRelationshipName": "trainingRecord",
+            "relationshipName": "training",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "technology",
+            "otherEntityRelationshipName": "trainingRecord",
+            "relationshipName": "skill",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191102035028",
+    "javadoc": "TrainingRecord entity.\\n@author full stack trainning laidongshi.",
+    "entityTableName": "training_record",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

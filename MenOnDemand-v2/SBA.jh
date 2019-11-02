@@ -87,32 +87,30 @@ enum TrainRecordStatus {
 	Propose,Progress, Completed
 }
 relationship ManyToOne {
-	TrainingRecord{training} to Training
-}
-relationship ManyToOne {
-	TrainingRecord{skill} to Technology
-}
-relationship OneToOne {
-	TrainingRecord{user} to User
-}
-relationship ManyToOne {
-	MentorSkill{mentor} to Mentor
-}
-relationship OneToOne {
-	MentorSkill{technology} to Technology
-}
-relationship OneToOne {
-	PaymentRecord{user} to User
+	TrainingRecord{training(name)} to Training,
+	TrainingRecord{skill(name)} to Technology
 }
 
 relationship OneToOne {
-	Mentor{user} to  User
-}
-relationship OneToOne {
-	MyCalendar{training} to Training
+	TrainingRecord{user(userName)} to User
 }
 relationship ManyToOne {
-	MyCalendar{user} to User
+	MentorSkill{mentor(username)} to Mentor
+}
+relationship OneToOne {
+	MentorSkill{technology(name)} to Technology
+}
+relationship OneToOne {
+	PaymentRecord{user(userName)} to User
+}
+relationship OneToOne {
+	Mentor{user(userName)} to  User
+}
+relationship OneToOne {
+	MyCalendar{training(name)} to Training
+}
+relationship ManyToOne {
+	MyCalendar{user(userName)} to User
 }
 // Set pagination options
 paginate TrainingRecord with infinite-scroll
