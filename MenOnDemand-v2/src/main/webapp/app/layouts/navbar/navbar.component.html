@@ -9,7 +9,7 @@
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                <a class="nav-link" routerLink="/mentor" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="search"></fa-icon>
                         <span>Search</span>
@@ -24,7 +24,7 @@
                     </span>
                 </a>
             </li>
-            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <fa-icon icon="user-plus"></fa-icon>
@@ -76,7 +76,7 @@
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
                         <span>
-                            Admin Console
+                            Management
                         </span>
                     </span>
                 </a>
@@ -96,7 +96,7 @@
                     <li>
                         <a class="dropdown-item" routerLink="my-calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>My Calendar</span>
+                            <span>Calendar</span>
                         </a>
                     </li>
                     <li>
@@ -202,7 +202,7 @@
                   <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
                     <span>
-                      Logout
+                        Settings
                     </span>
                   </span>
                   <span *ngIf="getImageUrl()">
@@ -213,7 +213,7 @@
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
-                            <span>Settings</span>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="true">

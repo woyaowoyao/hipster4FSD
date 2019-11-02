@@ -33,7 +33,7 @@ export const mentorRoute: Routes = [
     path: '',
     component: MentorComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'Mentors'
     },
     canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const mentorRoute: Routes = [
       mentor: MentorResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'Mentors'
     },
     canActivate: [UserRouteAccessService]
