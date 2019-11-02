@@ -17,6 +17,10 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./my-calendar/my-calendar.module').then(m => m.MentorOnDemandMyCalendarModule)
       },
       {
+        path: 'search-training',
+        loadChildren: () => import('./search-train/search-train.module').then(m => m.MentorOnDemandTrainingModule)
+      },
+      {
         path: 'training',
         loadChildren: () => import('./training/training.module').then(m => m.MentorOnDemandTrainingModule)
       },
