@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
-        <span class="navbar-title">MenOnDemandV2</span> <span class="navbar-version">{{version}}</span>
+        <span class="navbar-title">MentorOnDemand</span> <span class="navbar-version">{{version}}</span>
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
@@ -11,10 +11,64 @@
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="home"></fa-icon>
-                        <span>Home</span>
+                        <fa-icon icon="search"></fa-icon>
+                        <span>Search</span>
                     </span>
                 </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="sms"></fa-icon>
+                        <span>Notifications</span>
+                    </span>
+                </a>
+            </li>
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
+                    <span>
+                        <fa-icon icon="user-plus"></fa-icon>
+                        <span>MyMenus</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+                    <li>
+                        <a class="dropdown-item" routerLink="my-calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>My Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="mentor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Search Mentors</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="search-training" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Search Training</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="training-record" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Current Training</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="training-record" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Completed Training</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="payment-record" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>My Payment</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -22,7 +76,7 @@
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
                         <span>
-                            Entities
+                            Admin Console
                         </span>
                     </span>
                 </a>
@@ -64,6 +118,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item" routerLink="member" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Member</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="dropdown-item" routerLink="technology" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span>Technology</span>
@@ -76,7 +136,7 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <fa-icon icon="user-plus"></fa-icon>
-                        <span>Administration</span>
+                        <span>System</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
@@ -142,7 +202,7 @@
                   <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
                     <span>
-                      Account
+                      Logout
                     </span>
                   </span>
                   <span *ngIf="getImageUrl()">
