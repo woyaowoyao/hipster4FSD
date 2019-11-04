@@ -8,21 +8,12 @@ entity PaymentRecord {
     amount Float required,    
     totalAmountToMentor Float required,
 	issuedTime Instant required,
+	userId Long,
 	remarks String
 }
-entity User {
-	id Long,	
-    login String required,    
-    firstName  String required,
-	lastName  String required,
-	email String
-}
+
 enum PayTraType {
 	PAID, ISSUED, CANCELLED
-}
-
-relationship OneToOne {
-	PaymentRecord{user(firstName)} to User
 }
 // Set pagination options
 paginate PaymentRecord with infinite-scroll
