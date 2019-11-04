@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.laidongs.sba.gateway</groupId>
-    <artifactId>mentor-on-demand-v-2</artifactId>
+    <artifactId>mentor-on-demand</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Mentor On Demand V 2</name>
