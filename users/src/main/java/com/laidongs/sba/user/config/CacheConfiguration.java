@@ -45,6 +45,13 @@ public class CacheConfiguration {
             createCache(cm, com.laidongs.sba.user.domain.User.class.getName());
             createCache(cm, com.laidongs.sba.user.domain.Authority.class.getName());
             createCache(cm, com.laidongs.sba.user.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.laidongs.sba.user.domain.Mentor.class.getName());
+            createCache(cm, com.laidongs.sba.user.domain.MentorSkill.class.getName());
+            createCache(cm, com.laidongs.sba.user.domain.MyCalendar.class.getName());
+            createCache(cm, com.laidongs.sba.user.domain.Training.class.getName());
+            createCache(cm, com.laidongs.sba.user.domain.TrainingRecord.class.getName());
+            createCache(cm, com.laidongs.sba.user.domain.PaymentRecord.class.getName());
+            createCache(cm, com.laidongs.sba.user.domain.Technology.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

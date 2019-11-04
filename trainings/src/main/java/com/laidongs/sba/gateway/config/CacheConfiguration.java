@@ -40,6 +40,11 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
+            createCache(cm, com.laidongs.sba.gateway.domain.Mentor.class.getName());
+            createCache(cm, com.laidongs.sba.gateway.domain.MentorSkill.class.getName());
+            createCache(cm, com.laidongs.sba.gateway.domain.MyCalendar.class.getName());
+            createCache(cm, com.laidongs.sba.gateway.domain.Training.class.getName());
+            createCache(cm, com.laidongs.sba.gateway.domain.TrainingRecord.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

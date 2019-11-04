@@ -1,7 +1,8 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.laidongs.sba.gateway"
+      "packageName": "com.laidongs.sba.gateway",
+      "microservicePath": "../trainings"
     },
     "jhipsterVersion": "6.4.1",
     "applicationType": "gateway",
