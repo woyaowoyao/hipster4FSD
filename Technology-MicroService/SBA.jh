@@ -1,0 +1,65 @@
+
+
+entity Technology {
+	id Long,
+	name String  required,
+	toc String  ,
+	preprequisites String  
+}
+
+enum ProgressType {
+	One,Two,Three,Four
+}
+enum DurationType {
+	Morning0800, Morning1000,Afternoon1400,Afternoon1600
+}
+enum MemberType {
+	Trainer, Mentor
+}
+enum TrainStatus {
+	Active, Inactive
+}
+enum PayTraType {
+	PAID, ISSUED, CANCELLED
+}
+enum TrainRecordStatus {
+	Propose,Progress, Completed
+}
+relationship ManyToOne {
+	TrainingRecord{training(name)} to Training,
+	TrainingRecord{skill(name)} to Technology
+}
+
+relationship OneToOne {
+	TrainingRecord{user(firstName)} to User
+}
+relationship ManyToOne {
+	MentorSkill{mentor(firstName)} to Mentor
+}
+relationship OneToOne {
+	MentorSkill{technology(name)} to Technology
+}
+relationship OneToOne {
+	PaymentRecord{user(firstName)} to User
+}
+relationship OneToOne {
+	Mentor{user(firstName)} to  User
+}
+relationship OneToOne {
+	MyCalendar{training(name)} to Training
+}
+relationship ManyToOne {
+	MyCalendar{user(firstName)} to User
+}
+// Set pagination options
+paginate TrainingRecord with infinite-scroll
+paginate TrainingRecord with pagination
+
+// Set pagination options
+paginate Training with infinite-scroll
+paginate Training with pagination
+
+//  Data Transfert Objects (DTO)
+// dto * with mapstruct
+service all with serviceImpl
+
