@@ -24,10 +24,10 @@
             "otherEntityName": "mentor",
             "otherEntityRelationshipName": "mentorSkill",
             "relationshipName": "mentor",
-            "otherEntityField": "username"
+            "otherEntityField": "firstName"
         }
     ],
-    "changelogDate": "20191102035025",
+    "changelogDate": "20191104002713",
     "entityTableName": "mentor_skill",
     "dto": "no",
     "pagination": "no",

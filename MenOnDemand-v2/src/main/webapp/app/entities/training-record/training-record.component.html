@@ -27,7 +27,7 @@
             <th scope="col"  jhiSortBy="userName"><span>User Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="fees"><span>Fees</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="remarks"><span>Remarks</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="user.userName"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="user.firstName"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="training.name"><span>Training</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="skill.name"><span>Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
@@ -45,7 +45,7 @@
                 <td>{{trainingRecord.fees}}</td>
                 <td>{{trainingRecord.remarks}}</td>
                 <td>
-                    {{trainingRecord.user?.userName}}
+                    {{trainingRecord.user?.firstName}}
                 </td>
                 <td>
                     <div *ngIf="trainingRecord.training">

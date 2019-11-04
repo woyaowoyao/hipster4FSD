@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import './vendor';
-import { MenOnDemandV2SharedModule } from 'app/shared/shared.module';
-import { MenOnDemandV2CoreModule } from 'app/core/core.module';
-import { MenOnDemandV2AppRoutingModule } from './app-routing.module';
-import { MenOnDemandV2HomeModule } from './home/home.module';
-import { MenOnDemandV2EntityModule } from './entities/entity.module';
+import { MentorOnDemandV2SharedModule } from 'app/shared/shared.module';
+import { MentorOnDemandV2CoreModule } from 'app/core/core.module';
+import { MentorOnDemandV2AppRoutingModule } from './app-routing.module';
+import { MentorOnDemandV2HomeModule } from './home/home.module';
+import { MentorOnDemandV2EntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
@@ -17,14 +17,14 @@ import { ErrorComponent } from './layouts/error/error.component';
 @NgModule({
   imports: [
     BrowserModule,
-    MenOnDemandV2SharedModule,
-    MenOnDemandV2CoreModule,
-    MenOnDemandV2HomeModule,
+    MentorOnDemandV2SharedModule,
+    MentorOnDemandV2CoreModule,
+    MentorOnDemandV2HomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
-    MenOnDemandV2EntityModule,
-    MenOnDemandV2AppRoutingModule
+    MentorOnDemandV2EntityModule,
+    MentorOnDemandV2AppRoutingModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   bootstrap: [JhiMainComponent]
 })
-export class MenOnDemandV2AppModule {}
+export class MentorOnDemandV2AppModule {}

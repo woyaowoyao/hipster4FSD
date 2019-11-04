@@ -15,7 +15,7 @@ export class AuditsService {
     params.set('fromDate', req.fromDate);
     params.set('toDate', req.toDate);
 
-    const requestURL = SERVER_API_URL + 'services/user-microservice/management/audits';
+    const requestURL = SERVER_API_URL + 'services/users/management/audits';
 
     return this.http.get<Audit[]>(requestURL, {
       params,

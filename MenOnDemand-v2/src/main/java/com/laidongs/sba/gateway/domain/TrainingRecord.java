@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 import com.laidongs.sba.gateway.domain.enumeration.TrainRecordStatus;
 
+import com.laidongs.sba.gateway.domain.enumeration.ProgressType;
+
 /**
  * TrainingRecord entity.\n@author full stack trainning laidongshi.
  */
@@ -29,8 +31,9 @@ public class TrainingRecord implements Serializable {
     private TrainRecordStatus status;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "progress", nullable = false)
-    private Integer progress;
+    private ProgressType progress;
 
     @NotNull
     @Column(name = "commission_amount", nullable = false)
@@ -87,16 +90,16 @@ public class TrainingRecord implements Serializable {
         this.status = status;
     }
 
-    public Integer getProgress() {
+    public ProgressType getProgress() {
         return progress;
     }
 
-    public TrainingRecord progress(Integer progress) {
+    public TrainingRecord progress(ProgressType progress) {
         this.progress = progress;
         return this;
     }
 
-    public void setProgress(Integer progress) {
+    public void setProgress(ProgressType progress) {
         this.progress = progress;
     }
 
@@ -239,7 +242,7 @@ public class TrainingRecord implements Serializable {
         return "TrainingRecord{" +
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
-            ", progress=" + getProgress() +
+            ", progress='" + getProgress() + "'" +
             ", commissionAmount=" + getCommissionAmount() +
             ", avgRating=" + getAvgRating() +
             ", amountReceived=" + getAmountReceived() +

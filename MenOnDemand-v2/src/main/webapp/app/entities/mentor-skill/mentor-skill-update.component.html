@@ -31,7 +31,7 @@
                     <label class="form-control-label" for="field_mentor">Mentor</label>
                     <select class="form-control" id="field_mentor" name="mentor" formControlName="mentor">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="mentorOption.id === editForm.get('mentor').value?.id ? editForm.get('mentor').value : mentorOption" *ngFor="let mentorOption of mentors; trackBy: trackMentorById">{{mentorOption.username}}</option>
+                        <option [ngValue]="mentorOption.id === editForm.get('mentor').value?.id ? editForm.get('mentor').value : mentorOption" *ngFor="let mentorOption of mentors; trackBy: trackMentorById">{{mentorOption.firstName}}</option>
                     </select>
                 </div>
             </div>

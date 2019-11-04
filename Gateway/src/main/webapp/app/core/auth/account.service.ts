@@ -16,11 +16,11 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   fetch(): Observable<Account> {
-    return this.http.get<Account>(SERVER_API_URL + 'services/user-microservice/api/account');
+    return this.http.get<Account>(SERVER_API_URL + 'services/users/api/account');
   }
 
   save(account: Account): Observable<Account> {
-    return this.http.post<Account>(SERVER_API_URL + 'services/user-microservice/api/account', account);
+    return this.http.post<Account>(SERVER_API_URL + 'services/users/api/account', account);
   }
 
   authenticate(identity) {

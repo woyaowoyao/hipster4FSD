@@ -1,6 +1,6 @@
 package com.laidongs.sba.gateway.web.rest.errors;
 
-import com.laidongs.sba.gateway.MenOnDemandV2App;
+import com.laidongs.sba.gateway.MentorOnDemandV2App;
 import com.laidongs.sba.gateway.config.SecurityBeanOverrideConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests {@link ExceptionTranslator} controller advice.
  */
-@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, MenOnDemandV2App.class})
+@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, MentorOnDemandV2App.class})
 public class ExceptionTranslatorIT {
 
     @Autowired

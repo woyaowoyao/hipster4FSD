@@ -24,8 +24,8 @@ eureka:
     instance-info-replication-interval-seconds: 10
     registry-fetch-interval-seconds: 10
   instance:
-    appname: menondemandv2
-    instanceId: menondemandv2:${spring.application.instance-id:${random.value}}
+    appname: mentorondemandv2
+    instanceId: mentorondemandv2:${spring.application.instance-id:${random.value}}
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
     status-page-url-path: ${management.endpoints.web.base-path}/info
@@ -102,7 +102,7 @@ management:
 
 spring:
   application:
-    name: MenOnDemandV2
+    name: MentorOnDemandV2
   jmx:
     enabled: false
   data:
@@ -127,13 +127,13 @@ spring:
       enabled: false
   task:
     execution:
-      thread-name-prefix: men-on-demand-v-2-task-
+      thread-name-prefix: mentor-on-demand-v-2-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: men-on-demand-v-2-scheduling-
+      thread-name-prefix: mentor-on-demand-v-2-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -172,7 +172,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'menOnDemandV2App'
+    name: 'mentorOnDemandV2App'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
@@ -182,11 +182,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: MenOnDemandV2@localhost
+    from: MentorOnDemandV2@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: MenOnDemandV2 API
-    description: MenOnDemandV2 API documentation
+    title: MentorOnDemandV2 API
+    description: MentorOnDemandV2 API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

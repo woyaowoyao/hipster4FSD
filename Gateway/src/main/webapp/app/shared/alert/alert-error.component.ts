@@ -20,7 +20,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
   constructor(private alertService: JhiAlertService, private eventManager: JhiEventManager) {
     this.alerts = [];
 
-    this.cleanHttpErrorListener = eventManager.subscribe('menOnDemandV2App.httpError', response => {
+    this.cleanHttpErrorListener = eventManager.subscribe('mentorOnDemandV2App.httpError', response => {
       let i;
       const httpErrorResponse = response.content;
       switch (httpErrorResponse.status) {

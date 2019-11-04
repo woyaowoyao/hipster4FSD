@@ -41,7 +41,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20191102035027",
+    "changelogDate": "20191104002715",
     "javadoc": "Training entity.\\n@author full stack trainning laidongshi.",
     "entityTableName": "training",
     "dto": "no",

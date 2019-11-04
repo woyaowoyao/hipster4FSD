@@ -29,6 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.laidongs.sba.gateway.domain.enumeration.TrainRecordStatus;
+import com.laidongs.sba.gateway.domain.enumeration.ProgressType;
 /**
  * Integration tests for the {@link TrainingRecordResource} REST controller.
  */
@@ -38,8 +39,8 @@ public class TrainingRecordResourceIT {
     private static final TrainRecordStatus DEFAULT_STATUS = TrainRecordStatus.Propose;
     private static final TrainRecordStatus UPDATED_STATUS = TrainRecordStatus.Progress;
 
-    private static final Integer DEFAULT_PROGRESS = 1;
-    private static final Integer UPDATED_PROGRESS = 2;
+    private static final ProgressType DEFAULT_PROGRESS = ProgressType.One;
+    private static final ProgressType UPDATED_PROGRESS = ProgressType.Two;
 
     private static final Float DEFAULT_COMMISSION_AMOUNT = 1F;
     private static final Float UPDATED_COMMISSION_AMOUNT = 2F;
@@ -285,7 +286,7 @@ public class TrainingRecordResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(trainingRecord.getId().intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].progress").value(hasItem(DEFAULT_PROGRESS)))
+            .andExpect(jsonPath("$.[*].progress").value(hasItem(DEFAULT_PROGRESS.toString())))
             .andExpect(jsonPath("$.[*].commissionAmount").value(hasItem(DEFAULT_COMMISSION_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].avgRating").value(hasItem(DEFAULT_AVG_RATING.doubleValue())))
             .andExpect(jsonPath("$.[*].amountReceived").value(hasItem(DEFAULT_AMOUNT_RECEIVED.doubleValue())))
@@ -306,7 +307,7 @@ public class TrainingRecordResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(trainingRecord.getId().intValue()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.progress").value(DEFAULT_PROGRESS))
+            .andExpect(jsonPath("$.progress").value(DEFAULT_PROGRESS.toString()))
             .andExpect(jsonPath("$.commissionAmount").value(DEFAULT_COMMISSION_AMOUNT.doubleValue()))
             .andExpect(jsonPath("$.avgRating").value(DEFAULT_AVG_RATING.doubleValue()))
             .andExpect(jsonPath("$.amountReceived").value(DEFAULT_AMOUNT_RECEIVED.doubleValue()))

@@ -8,4 +8,4 @@ import { RouterModule } from '@angular/router';
     ])
   ]
 })
-export class MenOnDemandV2EntityModule {}
+export class MentorOnDemandV2EntityModule {}

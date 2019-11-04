@@ -17,15 +17,15 @@ eureka:
   client:
     enabled: false
   instance:
-    appname: MenOnDemandV2
-    instanceId: MenOnDemandV2:${spring.application.instance-id:${random.value}}
+    appname: MentorOnDemandV2
+    instanceId: MentorOnDemandV2:${spring.application.instance-id:${random.value}}
 
 spring:
   application:
-    name: MenOnDemandV2
+    name: MentorOnDemandV2
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:MenOnDemandV2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
+    url: jdbc:h2:mem:MentorOnDemandV2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
     name:
     username:
     password:
@@ -62,13 +62,13 @@ spring:
       enabled: false
   task:
     execution:
-      thread-name-prefix: men-on-demand-v-2-task-
+      thread-name-prefix: mentor-on-demand-v-2-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: men-on-demand-v-2-scheduling-
+      thread-name-prefix: mentor-on-demand-v-2-scheduling-
       pool:
         size: 1
   thymeleaf:
@@ -86,7 +86,7 @@ server:
 
 jhipster:
   clientApp:
-    name: 'menOnDemandV2App'
+    name: 'mentorOnDemandV2App'
   logging:
     # To test json console appender
     use-json-format: true # By default, logs are in Json format

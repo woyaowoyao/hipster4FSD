@@ -39,11 +39,11 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "mentor",
             "relationshipName": "user",
-            "otherEntityField": "userName",
+            "otherEntityField": "firstName",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20191102035024",
+    "changelogDate": "20191104002712",
     "entityTableName": "mentor",
     "dto": "no",
     "pagination": "no",

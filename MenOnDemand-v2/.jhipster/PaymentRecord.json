@@ -41,11 +41,11 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "paymentRecord",
             "relationshipName": "user",
-            "otherEntityField": "userName",
+            "otherEntityField": "firstName",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20191102035029",
+    "changelogDate": "20191104002717",
     "javadoc": "PaymentRecord entity.\\n@author full stack trainning laidongshi.",
     "entityTableName": "payment_record",
     "dto": "no",

@@ -1,6 +1,6 @@
 package com.laidongs.sba.gateway.web.rest;
 
-import com.laidongs.sba.gateway.MenOnDemandV2App;
+import com.laidongs.sba.gateway.MentorOnDemandV2App;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link ClientForwardController} REST controller.
  */
-@SpringBootTest(classes = MenOnDemandV2App.class)
+@SpringBootTest(classes = MentorOnDemandV2App.class)
 public class ClientForwardControllerIT {
 
     private MockMvc restMockMvc;

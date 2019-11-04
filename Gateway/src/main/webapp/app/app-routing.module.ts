@@ -22,7 +22,7 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
         },
         {
           path: 'account',
-          loadChildren: () => import('./account/account.module').then(m => m.MenOnDemandV2AccountModule)
+          loadChildren: () => import('./account/account.module').then(m => m.MentorOnDemandV2AccountModule)
         },
         ...LAYOUT_ROUTES
       ],
@@ -31,4 +31,4 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
   ],
   exports: [RouterModule]
 })
-export class MenOnDemandV2AppRoutingModule {}
+export class MentorOnDemandV2AppRoutingModule {}

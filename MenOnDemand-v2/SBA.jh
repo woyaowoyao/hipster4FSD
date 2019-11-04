@@ -41,7 +41,7 @@ entity Training {
 entity TrainingRecord {
 	id Long,
 	status TrainRecordStatus  required,
-	progress Integer required,
+	progress ProgressType required,
     commissionAmount Float required,
 	avgRating Float ,
 	amountReceived Float required,    
@@ -71,6 +71,9 @@ entity Technology {
 	preprequisites String  
 }
 
+enum ProgressType {
+	One,Two,Three,Four
+}
 enum DurationType {
 	Morning0800, Morning1000,Afternoon1400,Afternoon1600
 }
@@ -92,25 +95,25 @@ relationship ManyToOne {
 }
 
 relationship OneToOne {
-	TrainingRecord{user(userName)} to User
+	TrainingRecord{user(firstName)} to User
 }
 relationship ManyToOne {
-	MentorSkill{mentor(username)} to Mentor
+	MentorSkill{mentor(firstName)} to Mentor
 }
 relationship OneToOne {
 	MentorSkill{technology(name)} to Technology
 }
 relationship OneToOne {
-	PaymentRecord{user(userName)} to User
+	PaymentRecord{user(firstName)} to User
 }
 relationship OneToOne {
-	Mentor{user(userName)} to  User
+	Mentor{user(firstName)} to  User
 }
 relationship OneToOne {
 	MyCalendar{training(name)} to Training
 }
 relationship ManyToOne {
-	MyCalendar{user(userName)} to User
+	MyCalendar{user(firstName)} to User
 }
 // Set pagination options
 paginate TrainingRecord with infinite-scroll

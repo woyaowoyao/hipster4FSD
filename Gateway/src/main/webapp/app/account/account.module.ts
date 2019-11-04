@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MenOnDemandV2SharedModule } from 'app/shared/shared.module';
+import { MentorOnDemandV2SharedModule } from 'app/shared/shared.module';
 
 import { PasswordStrengthBarComponent } from './password/password-strength-bar.component';
 import { RegisterComponent } from './register/register.component';
@@ -13,7 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
 
 @NgModule({
-  imports: [MenOnDemandV2SharedModule, RouterModule.forChild(accountState)],
+  imports: [MentorOnDemandV2SharedModule, RouterModule.forChild(accountState)],
   declarations: [
     ActivateComponent,
     RegisterComponent,
@@ -24,4 +24,4 @@ import { accountState } from './account.route';
     SettingsComponent
   ]
 })
-export class MenOnDemandV2AccountModule {}
+export class MentorOnDemandV2AccountModule {}

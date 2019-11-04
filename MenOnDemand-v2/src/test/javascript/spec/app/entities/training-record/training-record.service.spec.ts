@@ -4,6 +4,7 @@ import { take, map } from 'rxjs/operators';
 import { TrainingRecordService } from 'app/entities/training-record/training-record.service';
 import { ITrainingRecord, TrainingRecord } from 'app/shared/model/training-record.model';
 import { TrainRecordStatus } from 'app/shared/model/enumerations/train-record-status.model';
+import { ProgressType } from 'app/shared/model/enumerations/progress-type.model';
 
 describe('Service Tests', () => {
   describe('TrainingRecord Service', () => {
@@ -21,7 +22,7 @@ describe('Service Tests', () => {
       service = injector.get(TrainingRecordService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new TrainingRecord(0, TrainRecordStatus.Propose, 0, 0, 0, 0, 'AAAAAAA', 0, 'AAAAAAA');
+      elemDefault = new TrainingRecord(0, TrainRecordStatus.Propose, ProgressType.One, 0, 0, 0, 'AAAAAAA', 0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -58,7 +59,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             status: 'BBBBBB',
-            progress: 1,
+            progress: 'BBBBBB',
             commissionAmount: 1,
             avgRating: 1,
             amountReceived: 1,
@@ -83,7 +84,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             status: 'BBBBBB',
-            progress: 1,
+            progress: 'BBBBBB',
             commissionAmount: 1,
             avgRating: 1,
             amountReceived: 1,

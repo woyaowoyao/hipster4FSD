@@ -1,15 +1,7 @@
 <div>
     <h2 id="page-heading">
-        <span>Search Trainings</span>
-        <div class="form-group">
-            <label class="form-control-label" for="field_username"></label>
-            <input type="text" class="form-control" name="username" id="field_username"
-                   formControlName="username"/>            
-        </div>     
-        <button type="submit" id="save-entity"  class="btn btn-primary">
-            <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span>SEARCH</span>
-        </button>
-        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn btn-primary float-right jh-create-entity create-training" [routerLink]="['/training/new']">
+        <span>Trainings</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-training" [routerLink]="['/training/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
             Create a new Training
@@ -51,23 +43,17 @@
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/training', training.id, 'view' ]"
-                            class="btn btn-primary btn-sm">
-                        <fa-icon [icon]="'eye'"></fa-icon>
-                        <span class="d-none d-md-inline">Propose Training</span>
-                    </button>
-                        <button type="submit"
-                                [routerLink]="['/training', training.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline">View</span>
                         </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                        <button type="submit"
                                 [routerLink]="['/training', training.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline">Edit</span>
                         </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                        <button type="submit"
                                 [routerLink]="['/training', { outlets: { popup: training.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

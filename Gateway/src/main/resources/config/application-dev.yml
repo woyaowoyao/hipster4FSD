@@ -44,8 +44,8 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/db/menondemandv2;DB_CLOSE_DELAY=-1
-    username: MenOnDemandV2
+    url: jdbc:h2:file:./target/h2db/db/mentorondemandv2;DB_CLOSE_DELAY=-1
+    username: MentorOnDemandV2
     password:
     hikari:
       poolName: Hikari
@@ -116,8 +116,8 @@ jhipster:
     max-age: 1800
   security:
     client-authorization:
-      access-token-uri: http://user-microservice/oauth/token
-      token-service-id: user-microservice
+      access-token-uri: http://users/oauth/token
+      token-service-id: users
       client-id: internal
       client-secret: internal
   mail: # specific JHipster mail property, for standard properties see MailProperties
@@ -137,7 +137,7 @@ jhipster:
     retention-period: 30 # Number of days before audit events are deleted.
 oauth2:
   signature-verification:
-    public-key-endpoint-uri: http://user-microservice/oauth/token_key
+    public-key-endpoint-uri: http://users/oauth/token_key
     #ttl for public keys to verify JWT tokens (in ms)
     ttl: 3600000
     #max. rate at which public keys will be fetched (in ms)

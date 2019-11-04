@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ProdConfig } from './blocks/config/prod.config';
-import { MenOnDemandV2AppModule } from './app.module';
+import { MentorOnDemandV2AppModule } from './app.module';
 
 ProdConfig();
 
@@ -9,7 +9,7 @@ if (module['hot']) {
 }
 
 platformBrowserDynamic()
-  .bootstrapModule(MenOnDemandV2AppModule, { preserveWhitespaces: true })
+  .bootstrapModule(MentorOnDemandV2AppModule, { preserveWhitespaces: true })
   // eslint-disable-next-line no-console
   .then(success => console.log('Application started'))
   .catch(err => console.error(err));

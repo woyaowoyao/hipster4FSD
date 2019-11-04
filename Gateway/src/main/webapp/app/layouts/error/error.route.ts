@@ -8,7 +8,7 @@ export const errorRoute: Routes = [
     component: ErrorComponent,
     data: {
       authorities: [],
-      pageTitle: 'MenOnDemandV2'
+      pageTitle: 'MentorOnDemandV2'
     }
   },
   {
@@ -16,7 +16,7 @@ export const errorRoute: Routes = [
     component: ErrorComponent,
     data: {
       authorities: [],
-      pageTitle: 'MenOnDemandV2',
+      pageTitle: 'MentorOnDemandV2',
       error403: true
     }
   },
@@ -25,7 +25,7 @@ export const errorRoute: Routes = [
     component: ErrorComponent,
     data: {
       authorities: [],
-      pageTitle: 'MenOnDemandV2',
+      pageTitle: 'MentorOnDemandV2',
       error404: true
     }
   },

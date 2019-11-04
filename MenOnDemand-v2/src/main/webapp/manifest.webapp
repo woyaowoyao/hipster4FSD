@@ -1,6 +1,6 @@
 {
-  "name": "MenOnDemandV2",
-  "short_name": "MenOnDemandV2",
+  "name": "Mentor On Demand",
+  "short_name": "Mentor On Demand",
   "icons": [
       {
           "src": "./content/images/jhipster_family_member_0_head-192.png",

@@ -19,7 +19,7 @@
             <column name="status" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="progress" type="integer">
+            <column name="progress" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <column name="commission_amount" type="${floatType}">
@@ -73,7 +73,7 @@
                   tableName="training_record">
             <column name="id" type="numeric"/>
             <column name="status" type="string"/>
-            <column name="progress" type="numeric"/>
+            <column name="progress" type="string"/>
             <column name="commission_amount" type="numeric"/>
             <column name="avg_rating" type="numeric"/>
             <column name="amount_received" type="numeric"/>

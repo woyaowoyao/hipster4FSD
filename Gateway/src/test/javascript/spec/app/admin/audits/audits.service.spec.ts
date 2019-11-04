@@ -30,7 +30,7 @@ describe('Service Tests', () => {
         service.query({}).subscribe(() => {});
 
         const req = httpMock.expectOne({ method: 'GET' });
-        const resourceUrl = SERVER_API_URL + 'services/user-microservice/management/audits';
+        const resourceUrl = SERVER_API_URL + 'services/users/management/audits';
         expect(req.request.url).toEqual(resourceUrl);
       });
 

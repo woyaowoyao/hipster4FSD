@@ -11,7 +11,8 @@
         },
         {
             "fieldName": "progress",
-            "fieldType": "Integer",
+            "fieldType": "ProgressType",
+            "fieldValues": "One,Two,Three,Four",
             "fieldValidateRules": [
                 "required"
             ]
@@ -56,7 +57,7 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "trainingRecord",
             "relationshipName": "user",
-            "otherEntityField": "userName",
+            "otherEntityField": "firstName",
             "ownerSide": true
         },
         {
@@ -74,7 +75,7 @@
             "otherEntityField": "name"
         }
     ],
-    "changelogDate": "20191102035028",
+    "changelogDate": "20191104002716",
     "javadoc": "TrainingRecord entity.\\n@author full stack trainning laidongshi.",
     "entityTableName": "training_record",
     "dto": "no",

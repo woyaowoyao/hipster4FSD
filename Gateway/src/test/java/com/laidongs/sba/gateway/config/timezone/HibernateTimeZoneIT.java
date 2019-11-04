@@ -1,6 +1,6 @@
 package com.laidongs.sba.gateway.config.timezone;
 
-import com.laidongs.sba.gateway.MenOnDemandV2App;
+import com.laidongs.sba.gateway.MentorOnDemandV2App;
 import com.laidongs.sba.gateway.config.SecurityBeanOverrideConfiguration;
 import com.laidongs.sba.gateway.repository.timezone.DateTimeWrapper;
 import com.laidongs.sba.gateway.repository.timezone.DateTimeWrapperRepository;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration tests for the UTC Hibernate configuration.
  */
-@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, MenOnDemandV2App.class})
+@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, MentorOnDemandV2App.class})
 public class HibernateTimeZoneIT {
 
     @Autowired

@@ -1,22 +1,7 @@
 <div>
     <h2 id="page-heading">
-        <span>Search Mentors</span>
-        <div class="form-group">
-            <label class="form-control-label" for="field_username"></label>
-            <input type="text" class="form-control" name="username" id="field_username"
-                   formControlName="username"/>            
-        </div>
-      <!--   <div class="form-group">
-            <label class="form-control-label" for="field_status">Status</label>
-            <select class="form-control" name="status" formControlName="status" id="field_status">
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-            </select>            
-        </div> -->
-        <button type="submit" id="save-entity"  class="btn btn-primary">
-            <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span>SEARCH</span>
-        </button>
-        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-mentor" [routerLink]="['/mentor/new']">
+        <span>Mentors</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-mentor" [routerLink]="['/mentor/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
             Create a new Mentor
@@ -54,7 +39,7 @@
                 <td>{{mentor.experience}}</td>
                 <td>{{mentor.status}}</td>
                 <td>
-                    {{mentor.user?.userName}}
+                    {{mentor.user?.firstName}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
@@ -64,13 +49,13 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline">View</span>
                         </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  type="submit"
+                        <button type="submit"
                                 [routerLink]="['/mentor', mentor.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline">Edit</span>
                         </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  type="submit"
+                        <button type="submit"
                                 [routerLink]="['/mentor', { outlets: { popup: mentor.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

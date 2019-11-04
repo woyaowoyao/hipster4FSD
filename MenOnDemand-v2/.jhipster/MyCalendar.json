@@ -29,10 +29,10 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "myCalendar",
             "relationshipName": "user",
-            "otherEntityField": "userName"
+            "otherEntityField": "firstName"
         }
     ],
-    "changelogDate": "20191102035026",
+    "changelogDate": "20191104002714",
     "entityTableName": "my_calendar",
     "dto": "no",
     "pagination": "no",

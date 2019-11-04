@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MenOnDemandV2SharedModule } from 'app/shared/shared.module';
+import { MentorOnDemandV2SharedModule } from 'app/shared/shared.module';
 
 import { JhiHealthCheckComponent } from './health.component';
 import { JhiHealthModalComponent } from './health-modal.component';
@@ -8,7 +8,7 @@ import { JhiHealthModalComponent } from './health-modal.component';
 import { healthRoute } from './health.route';
 
 @NgModule({
-  imports: [MenOnDemandV2SharedModule, RouterModule.forChild([healthRoute])],
+  imports: [MentorOnDemandV2SharedModule, RouterModule.forChild([healthRoute])],
   declarations: [JhiHealthCheckComponent, JhiHealthModalComponent],
   entryComponents: [JhiHealthModalComponent]
 })

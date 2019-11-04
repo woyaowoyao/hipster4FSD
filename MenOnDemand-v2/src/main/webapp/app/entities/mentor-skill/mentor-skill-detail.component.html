@@ -22,7 +22,7 @@
                 <dt><span>Mentor</span></dt>
                 <dd>
                     <div *ngIf="mentorSkill.mentor">
-                        <a [routerLink]="['/mentor', mentorSkill.mentor?.id, 'view']">{{mentorSkill.mentor?.username}}</a>
+                        <a [routerLink]="['/mentor', mentorSkill.mentor?.id, 'view']">{{mentorSkill.mentor?.firstName}}</a>
                     </div>
                 </dd>
             </dl>

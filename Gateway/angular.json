@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "men-on-demand-v-2": {
+    "mentor-on-demand-v-2": {
       "root": "",
       "sourceRoot": "src/main/webapp",
       "projectType": "application",
@@ -29,7 +29,7 @@
       "architect": {}
     }
   },
-  "defaultProject": "men-on-demand-v-2",
+  "defaultProject": "mentor-on-demand-v-2",
   "cli": {
     "packageManager": "npm"
   }
