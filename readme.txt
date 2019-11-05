@@ -21,3 +21,14 @@ jhipster import-jdl SBA-tech.jh
  jhipster entity Technology --skip-server
  
  docker run -d -p 49001:8080 -v /docker_jenkins_home/:/var/jenkins_home/ --name jenkins jenkins:2.60.1
+ 
+ docker run -u root  --rm -d -p 7001:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  robin9999/blueocean4docker:v1
+ 
+  docker-compose -f app.yml up -d
+  
+ cd payments & docker build -t robin9999/payments:sba1 . 
+ cd.. &  docker-compose -f docker-compose.yml updown
+ 
+  docker run -u root  --rm -d -p 9083:9083   robin9999/payments:sba1 --net="host"
+  docker run -u root  --rm -d -p 9088:9088   robin9999/users:sba1
+   docker run --rm -d -p 8761:8761 jhipster/jhipster-registry:v5.0.2 

@@ -17,29 +17,50 @@ pipeline {
              //  }
             }             
         }
-        stage('Build-UserService') {
+        stage('build-users-ervice') {
             steps {
 			  dir('./users') {
              	sh "pwd"
              	//sh 'mvn --version'
-                sh 'mvn clean install -Dmaven.test.skip=true'
+                sh 'mvn clean package -Dmaven.test.skip=true'
 				}
             }
-        }     
-        stage('ReleaseAppDocker') {
-            steps {  
-            dir('./Gateway') {
-            	sh 'mvn clean package -Dmaven.test.skip=true'
-            }           
-            dir('./payments') {
-            		sh "pwd"
-					sh 'mvn clean package -Dmaven.test.skip=true'
-            		//sh "chmod +x *.sh"
-            		//sh 'mvn dockerfile:build'
-            		//sh "./build.sh"
-            		//sh 'mvn spring-boot:run'
-            	}         	
-            }   
-        }      
+        }
+        stage('build-gateway') {
+            steps {
+			  dir('./Gateway') {
+             	sh "pwd"
+             	//sh 'mvn --version'
+                sh 'mvn clean package -Dmaven.test.skip=true'
+				}
+            }
+        }		
+        stage('build-trainings') {
+            steps {
+			  dir('./trainings') {
+             	sh "pwd"
+             	//sh 'mvn --version'
+                sh 'mvn clean package -Dmaven.test.skip=true'
+				}
+            }
+        }
+        stage('build-payments') {
+            steps {
+			  dir('./payments') {
+             	sh "pwd"
+             	//sh 'mvn --version'
+                sh 'mvn clean package -Dmaven.test.skip=true'
+				}
+            }
+        }
+        stage('build-gateway') {
+            steps {
+			  dir('./Gateway') {
+             	sh "pwd"
+             	//sh 'mvn --version'
+                sh 'mvn clean package -Dmaven.test.skip=true'
+				}
+            }
+        }		
     }
 }
