@@ -13,28 +13,31 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_woyao', url: 'https://github.com/woyaowoyao/hipster4FSD.git']]])
               	sh "pwd"
              	sh 'mvn --version'
-                sh 'mvn install'
+              //  sh 'mvn install'
              //  }
             }             
         }
-        stage('Build') {
+        stage('Build-UserService') {
             steps {
+			  dir('./users') {
              	sh "pwd"
-             	sh 'mvn --version'
-                //sh 'mvn clean install -Dmaven.test.skip=true'
+             	//sh 'mvn --version'
+                sh 'mvn clean install -Dmaven.test.skip=true'
+				}
             }
         }     
         stage('ReleaseAppDocker') {
             steps {  
             dir('./Gateway') {
-            	sh 'mvn clean package'
+            	sh 'mvn clean package -Dmaven.test.skip=true'
             }           
-            dir('./users') {
+            dir('./payments') {
             		sh "pwd"
+					sh 'mvn clean package -Dmaven.test.skip=true'
             		//sh "chmod +x *.sh"
             		//sh 'mvn dockerfile:build'
             		//sh "./build.sh"
-            		sh 'mvn spring-boot:run'
+            		//sh 'mvn spring-boot:run'
             	}         	
             }   
         }      
