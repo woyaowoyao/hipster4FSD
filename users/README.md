@@ -43,6 +43,8 @@ You can also fully dockerize your application and all the services that it depen
 To achieve this, first build a docker image of your app by running:
 
     ./mvnw -Pprod verify jib:dockerBuild
+     docker build -f  Dockerfile -t robin9999/users:sba1 .
+    docker build .
 
 Then run:
 
