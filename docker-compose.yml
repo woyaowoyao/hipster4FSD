@@ -1,0 +1,9 @@
+version: "3"
+services:
+  payments:
+    image: robin9999/payments:sba1
+    container_name: payments
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9083:9083
