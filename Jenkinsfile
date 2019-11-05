@@ -9,12 +9,12 @@ pipeline {
      	stage('pull code') {
             steps {
                sh "pwd"
-               dir("${env.WORKSPACE}/Gateway"){
+               //dir("${env.WORKSPACE}/Gateway"){
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_woyao', url: 'http://github.com/woyaowoyao/hipster4FSD.git']]])
               	sh "pwd"
              	sh 'mvn --version'
                 sh 'mvn install'
-               }
+             //  }
             }             
         }
         stage('Build') {
