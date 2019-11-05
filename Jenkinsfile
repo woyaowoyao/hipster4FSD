@@ -10,7 +10,7 @@ pipeline {
             steps {
                sh "pwd"
                dir("${env.WORKSPACE}/Gateway"){
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'laidongshi_id', url: 'http://github/woyaowoyao/fullstacktrain.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_woyao', url: 'http://github.com/woyaowoyao/fullstacktrain.git']]])
               	sh "pwd"
              	sh 'mvn --version'
                 sh 'mvn install'
