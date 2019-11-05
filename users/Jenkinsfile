@@ -2,10 +2,10 @@ pipeline {
     agent any
     environment {
       
-	    GIT_URL = "git@github.ibm.com:sba/account.git"
+	    GIT_URL = "git@github.com/woyaowoyao/hipster4FSD.git"
 		GIT_CRED = "48946d03-31f8-4cee-a4ed-c138e7b900a0"
-		DOCKER_REPO="registry.cn-shanghai.aliyuncs.com/yuanbing/sba-account"
-		DOCKER_REG="https://registry.cn-shanghai.aliyuncs.com"
+		DOCKER_REPO="robin9999/users"
+		DOCKER_REG="https://hub.docker.com"
 		DOCKER_REG_KEY = "874c3949-6135-41d1-902c-ebd184193ded"
 		dockerImage = ''
       
@@ -17,27 +17,33 @@ pipeline {
             	checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: GIT_CRED, url: GIT_URL]]])
             	}
               }
-        stage('Maven Build'){
+        stage('Maven Build'){        
         	steps{
+        	 dir('./users') {
         	    sh 'mvn clean install -DskipTests'
+        	    }
         	}
 
         }
         
         stage('Building image') {
 	      steps{
+	       dir('./users') {
 	        script {
 	           docker.withRegistry( DOCKER_REG, DOCKER_REG_KEY ) {dockerImage = docker.build DOCKER_REPO + ":$BUILD_NUMBER"
+	           }
 	           }
 	        }
 	      }
 	    }
 	    stage('Push Image') {
       steps{
+       dir('./users') {
         script {
 		   docker.withRegistry( DOCKER_REG, DOCKER_REG_KEY ) {
 		            dockerImage.push()
 		          }
+		        }
 		        }
 		      }
 		}

@@ -1,4 +1,4 @@
-# users
+-DskipTests# users
 
 This application is User Account and Authentication (UAA) Server,  secure microservices with JWT.
 
@@ -42,7 +42,7 @@ To stop it and remove the container, run:
 You can also fully dockerize your application and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
 
-    ./mvnw -Pprod verify jib:dockerBuild
+    ./mvnw -Pprod -DskipTests verify jib:dockerBuild
      docker build -f  Dockerfile -t robin9999/users:sba1 .
     docker build .
 
