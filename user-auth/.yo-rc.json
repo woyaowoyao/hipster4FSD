@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.laidongs.sba.user"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "uaa",
+    "baseName": "users",
+    "packageName": "com.laidongs.sba.user",
+    "packageFolder": "com/laidongs/sba/user",
+    "serverPort": "9088",
+    "authenticationType": "uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZTEzN2JkOGJmMDFjZjBkN2ZiMGI0YzY2Y2YwMWVjNWViMzZkZjdkYWNmYTkwNDNkOTllYWJhMjEzN2VmYTk4ZTExY2ZiMmFkYjM3NjQ0ZWIxZWJhYTg2N2Q3ZjM0YzAzOTU1ZWU1Nzg0NTRmNWJkYTc4MDI2YTA1NWIyNDMxZWU=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true
+  }
+}
