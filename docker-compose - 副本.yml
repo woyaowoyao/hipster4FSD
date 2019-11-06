@@ -1,0 +1,58 @@
+version: "3"
+services:
+  user-service:
+    image: robin9999/user-service:latest
+    container_name: user-service
+    restart: always
+    network_mode: "host"
+    ports:
+      - 8087:8087
+  sp-gateway:
+    image: robin9999/sp-gateway:latest
+    container_name: sp-gateway
+    restart: always
+    ports:
+      - 8765:8765
+  master-data-service:
+    image: robin9999/master-data-service:latest
+    container_name: master-data-service
+    network_mode: "host"
+    restart: always
+    ports:
+      - 8089:8089
+  demand-service:
+    image: robin9999/demand-service:latest
+    container_name: demand-service
+    network_mode: "host"
+    restart: always
+    ports:
+      - 8083:8083        
+  dictionary-service:
+    image: robin9999/dictionary-service:latest
+    container_name: dictionary-service
+    network_mode: "host"
+    restart: always
+    ports:
+      - 8084:8084
+  log-service:
+    image: robin9999/log-service:latest
+    container_name: log-service
+    network_mode: "host"
+    restart: always
+    ports:
+      - 8085:8085
+  capacity-service:
+    image: robin9999/capacity-service:latest
+    container_name: capacity-service
+    restart: always
+    network_mode: "host"
+    ports:
+      - 8086:8086
+  pplan-service:
+    image: robin9999/pplan-service:latest
+    container_name: pplan-service
+    network_mode: "host"
+    restart: always
+    ports:
+      - 8088:8088     
+      
