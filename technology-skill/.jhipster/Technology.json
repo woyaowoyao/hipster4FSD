@@ -1,0 +1,33 @@
+{
+    "name": "Technology",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preprequisites",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191106034103",
+    "javadoc": "Technology entity.\\n@author full stack laidongshi.",
+    "entityTableName": "technology",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "technology",
+    "applications": "*",
+    "microserviceName": "technology"
+}
