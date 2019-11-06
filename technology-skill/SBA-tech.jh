@@ -1,0 +1,18 @@
+
+
+/**
+ * Technology entity.
+ * @author full stack laidongshi.
+ */
+entity Technology {
+	id Long,
+	name String  required,
+	toc String  ,
+	preprequisites String  
+}
+
+
+//  Data Transfert Objects (DTO)
+// dto * with mapstruct
+service all with serviceImpl
+
