@@ -1,5 +1,19 @@
 version: "3"
 services:
+  users:
+    image: robin9999/users:sba1
+    container_name: users
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9088:9088
+  mentor-on-demand:
+    image: robin9999/mentor-on-demand:sba1
+    container_name: mentor-on-demand
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9087:9087
   payments:
     image: robin9999/payments:sba1
     container_name: payments

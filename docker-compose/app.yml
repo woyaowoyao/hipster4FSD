@@ -2,27 +2,31 @@ version: '2'
 services:
   mentorondemandv2-app:
     image: robin9999/mentorondemandv2:sba1
+    restart: always
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://localhost:8761/eureka
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://localhost:8761/
       - SPRING_CLOUD_CONFIG_URI=
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mentorondemandv2-mysql:3306/mentorondemandv2?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/mentorondemandv2?useUnicode=true&characterEncoding=utf8&useSSL=false
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+    network_mode: "host"
     ports:
       - 9087:9087
+
   mentorondemandv2-mysql:
     extends:
       file: mysql.yml
       service: mentorondemandv2-mysql
-  users-app:
-    image: robin9999/users:sba1
-    environment:
-      - _JAVA_OPTIONS=-Xmx512m -Xms256m
-      - SPRING_PROFILES_ACTIVE=prod,swagger
-      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://localhost:8761/eureka
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mentorondemandv2:3306/users?useUnicode=true&characterEncoding=utf8&useSSL=false
-      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+  # users-app:
+    # image: robin9999/users:sba1
+    # environment:
+      # - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      # - SPRING_PROFILES_ACTIVE=prod,swagger
+      # - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      # - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://localhost:8761/eureka
+      # - SPRING_DATASOURCE_URL=jdbc:mysql://mentorondemandv2:3306/users?useUnicode=true&characterEncoding=utf8&useSSL=false
+      # - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+    # network_mode: "host"
 
