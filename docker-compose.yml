@@ -7,9 +7,9 @@ services:
     network_mode: "host"
     ports:
       - 9088:9088
-  mentor-on-demand:
-    image: robin9999/mentor-on-demand:sba1
-    container_name: mentor-on-demand
+  zuulgateway:
+    image: robin9999/zuulgateway:sba1
+    container_name: zuulgateway
     restart: always
     network_mode: "host"
     ports:
@@ -21,3 +21,17 @@ services:
     network_mode: "host"
     ports:
       - 9083:9083
+  trainings:
+    image: robin9999/trainings:sba1
+    container_name: trainings
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9084:9084
+  technology:
+    image: robin9999/technology:sba1
+    container_name: technology
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9081:9081      

@@ -19,6 +19,8 @@ jhipster import-jdl SBA-tech.jh
 
 
  jhipster entity Technology --skip-server
+ jhipster entity PaymentRecord --skip-server
+ jhipster entity Mentor --skip-server
  
  docker run -d -p 49001:8080 -v /docker_jenkins_home/:/var/jenkins_home/ --name jenkins jenkins:2.60.1
  
@@ -28,18 +30,27 @@ jhipster import-jdl SBA-tech.jh
   
  cd payments & docker build -t robin9999/payments:sba1 . 
  cd user-auth & docker build -t robin9999/users:sba1 . 
- cd Gateway & docker build -t robin9999/mentor-on-demand:sba1 . 
+ cd zuulgateway & docker build -t robin9999/zuulgateway:sba1 . 
  cd trainings & docker build -t robin9999/trainings:sba1 .
  docker build -t robin9999/technology:sba1 .
  cd.. &  docker-compose -f docker-compose.yml up -d
  down
  
  
+cd docker-compose  docker-compose -f docker-registry.yml up -d
+ 
  
  cd Gateway & docker build -t robin9999/mentor-on-demand:sba1 . 
  docker run --rm -d -p 8761:8761 jhipster/jhipster-registry:v5.0.2 
  
- 
+ docker run -u root  --rm -d -p 9088:9088   robin9999/users:sba1 --net="host"
   docker run -u root  --rm -d -p 9083:9083   robin9999/payments:sba1 --net="host"
-  docker run -u root  --rm -d -p 9088:9088   robin9999/users:sba1
+   docker run -u root  --rm -d -p 9087:9087   robin9999/zuulgateway:sba1 --net="host"
+  docker run -u root  --rm -d -p 9084:9084   robin9999/trainings:sba1 --net="host"
+  docker run -u root  --rm -d -p 9088:9088   robin9999/users:sba1 --net="host"
    docker run --rm -d -p 8761:8761 jhipster/jhipster-registry:v5.0.2 
+   
+   
+  docker run -u root  --rm -d -p 9084:9084   robin9999/trainings:sba1 --network bridge   $(cat /etc/hosts|awk -F ' ' '{if(NR>2){print "--add-host "$2":"$1}}')  --name trainings1 
+  
+   apk add bash wget curl

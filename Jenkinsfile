@@ -17,21 +17,23 @@ pipeline {
              //  }
             }             
         }
-        stage('build-users-ervice') {
+        stage('build-users-service') {
             steps {
-			  dir('./users') {
+			  dir('./user-auth') {
              	sh "pwd"
              	//sh 'mvn --version'
                 sh 'mvn clean package -Dmaven.test.skip=true'
+				sh 'build -t robin9999/users:sba1 .'
 				}
             }
         }
         stage('build-gateway') {
             steps {
-			  dir('./Gateway') {
+			  dir('./zuul-gateway') {
              	sh "pwd"
              	//sh 'mvn --version'
                 sh 'mvn clean package -Dmaven.test.skip=true'
+				sh 'build -t robin9999/zuulgateway:sba1 .'
 				}
             }
         }		
@@ -41,6 +43,7 @@ pipeline {
              	sh "pwd"
              	//sh 'mvn --version'
                 sh 'mvn clean package -Dmaven.test.skip=true'
+				sh 'build -t robin9999/trainings:sba1 .'
 				}
             }
         }
@@ -50,15 +53,41 @@ pipeline {
              	sh "pwd"
              	//sh 'mvn --version'
                 sh 'mvn clean package -Dmaven.test.skip=true'
+				sh 'docker build -t robin9999/payments:sba1 .'
 				}
             }
-        }
-        stage('build-gateway') {
+        }		
+        stage('build-technology') {
             steps {
-			  dir('./Gateway') {
+			  dir('./technology-skill') {
              	sh "pwd"
              	//sh 'mvn --version'
                 sh 'mvn clean package -Dmaven.test.skip=true'
+				sh 'docker build -t robin9999/technology:sba1 .'
+				}
+            }
+        }
+		stage('build-FrontEnd') {
+            steps {
+			  dir('./FrontEnd') {
+             	sh "pwd"             	
+				sh 'docker build -t robin9999/FrontEnd:sba1 .'
+				}
+            }
+        }
+		stage('build-registry') {
+            steps {
+			  dir('./service-registry') {
+             	sh "pwd"             	
+				sh 'docker build -t robin9999/service-registry:sba1 .'
+				}
+            }
+        }
+		stage('docker-compose-up') {
+            steps {
+			  dir('./docker-compose') {
+             	sh "pwd"             	
+				sh ' docker-compose -f docker-compose.yml up -d'
 				}
             }
         }		
