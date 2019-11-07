@@ -1,0 +1,51 @@
+version: "3"
+services:
+  service-registry:
+    image: robin9999/service-registry:sba1
+    container_name: service-registry
+    restart: always
+    network_mode: "host"
+    ports:
+      - 8761:8761  
+  users:
+    image: robin9999/users:sba1
+    container_name: users
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9088:9088
+  zuulgateway:
+    image: robin9999/zuulgateway:sba1
+    container_name: zuulgateway
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9087:9087
+  payments:
+    image: robin9999/payments:sba1
+    container_name: payments
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9083:9083
+  trainings:
+    image: robin9999/trainings:sba1
+    container_name: trainings
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9084:9084
+  technology:
+    image: robin9999/technology:sba1
+    container_name: technology
+    restart: always
+    network_mode: "host"
+    ports:
+      - 9081:9081      
+  FrontEnd:
+    image: robin9999/FrontEnd:sba1
+    container_name: FrontEnd
+    restart: always
+    network_mode: "host"
+    ports:
+      - 8761:8761        
