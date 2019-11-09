@@ -24,8 +24,8 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
-
+      defaultZone: http://admin:${jhipster.registry.password}@docker-compose-eureka:8761/eureka/
+#host set 127.0.0.1 docker-compose-eureka
 spring:
   profiles:
     active: dev
