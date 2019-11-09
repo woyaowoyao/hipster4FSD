@@ -48,7 +48,7 @@ public class OAuth2JwtAccessTokenConverter extends JwtAccessTokenConverter {
             }
             return super.decode(token);
         } catch (InvalidTokenException ex) {
-            if (tryCreateSignatureVerifier()) {
+            if (tryCreateSignatureVerifier()) {//2019-11-09 dongshi
                 return super.decode(token);
             }
             throw ex;
@@ -77,6 +77,7 @@ public class OAuth2JwtAccessTokenConverter extends JwtAccessTokenConverter {
             log.error("could not get public key from OAuth2 server to create SignatureVerifier", ex);
         }
         return false;
+        //return true;
     }
     /**
      * Extract JWT claims and set it to OAuth2Authentication decoded details.
