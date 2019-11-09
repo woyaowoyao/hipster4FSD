@@ -54,7 +54,7 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter im
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
             .antMatchers(HttpMethod.OPTIONS, "/**")
-            .antMatchers("/api/**")
+            //.antMatchers("/api/**")
             .antMatchers("/app/**/*.{js,html}")
             .antMatchers("/i18n/**")
             .antMatchers("/content/**")
