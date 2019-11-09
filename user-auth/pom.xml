@@ -130,7 +130,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
+<!--             <scope>test</scope> -->
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -570,7 +570,7 @@
                             <image>adoptopenjdk:11-jre-hotspot</image>
                         </from>
                         <to>
-                            <image>users:latest</image>
+                            <image>users:mvn</image>
                         </to>
                         <container>
                             <entrypoint>
