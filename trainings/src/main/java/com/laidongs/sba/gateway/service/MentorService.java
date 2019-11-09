@@ -25,6 +25,7 @@ public interface MentorService {
      */
     List<Mentor> findAll();
 
+    List<Mentor> search(String username);
 
     /**
      * Get the "id" mentor.

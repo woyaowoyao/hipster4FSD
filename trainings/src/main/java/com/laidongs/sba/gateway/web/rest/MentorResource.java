@@ -91,6 +91,12 @@ public class MentorResource {
         return mentorService.findAll();
     }
 
+    @GetMapping("/searchMentors/{username}")
+    public List<Mentor> searchMentors(@PathVariable String username) {
+        log.debug("REST request to get search Mentors ");
+       // mentorService.
+        return mentorService.search(username);
+    }
     /**
      * {@code GET  /mentors/:id} : get the "id" mentor.
      *
