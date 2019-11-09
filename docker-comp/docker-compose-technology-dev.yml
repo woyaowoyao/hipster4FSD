@@ -1,0 +1,13 @@
+version: '2'
+services:
+  technology-app:
+    image: technology:dev
+    ports:
+      - "9081:9081"  
+    depends_on:
+      - docker-compose-eureka
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=dev,swagger'
+
+

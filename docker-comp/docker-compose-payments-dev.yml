@@ -1,0 +1,13 @@
+version: '2'
+services:
+  payments-app:
+    image: payments:dev
+    ports:
+      - "9083:9083"  
+    depends_on:
+      - docker-compose-eureka
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=dev,swagger'
+
+

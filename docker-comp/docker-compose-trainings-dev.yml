@@ -1,0 +1,13 @@
+version: '2'
+services:
+  trainings-app:
+    image: trainings:dev
+    ports:
+      - "9084:9084"  
+    depends_on:
+      - docker-compose-eureka
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=dev,swagger'
+
+

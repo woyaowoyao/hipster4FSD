@@ -1,0 +1,13 @@
+version: '2'
+services:
+  zuulgateway-app:
+    image: zuulgateway:dev
+    ports:
+      - "9087:9087"  
+    #depends_on:
+     # - docker-compose-eureka
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=dev,swagger'
+
+

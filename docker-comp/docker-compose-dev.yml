@@ -1,0 +1,28 @@
+version: '2'
+services:
+  docker-compose-eureka:
+    image: robin9999/docker-compose-eureka:v1.0.0
+    restart: always
+    container_name: docker-compose-eureka
+    hostname: docker-compose-eureka
+    ports:
+      - "8761:8761"  
+  users-app:
+    image: users:dev
+    ports:
+      - "9088:9088"  
+    depends_on:
+      - docker-compose-eureka
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=dev,swagger'
+  zuulgateway-app:
+    image: zuulgateway:dev
+    ports:
+      - "9087:9087"  
+    depends_on:
+      - docker-compose-eureka
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=dev,swagger'
+

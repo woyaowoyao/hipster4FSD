@@ -1,0 +1,19 @@
+version: "2"
+services:
+  docker-compose-eureka:
+    image: robin9999/docker-compose-eureka:v1.0.0
+    restart: always
+    container_name: docker-compose-eureka
+    hostname: docker-compose-eureka
+    ports:
+      - "8761:8761"  
+  users:
+    image: robin9999/users:sba1
+    container_name: users
+    hostname: users
+    ports:
+      - "9088:9088"
+    depends_on:
+      - docker-compose-eureka
+    volumes:
+      - /Volumes:/Volumes
