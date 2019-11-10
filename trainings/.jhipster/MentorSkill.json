@@ -17,6 +17,13 @@
             "otherEntityRelationshipName": "mentorSkill",
             "relationshipName": "mentor",
             "otherEntityField": "firstName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "technology",
+            "otherEntityRelationshipName": "mentorSkill",
+            "relationshipName": "technology",
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20191104121015",

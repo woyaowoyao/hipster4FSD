@@ -31,6 +31,10 @@ public class MentorSkill implements Serializable {
     @JsonIgnoreProperties("mentorSkills")
     private Mentor mentor;
 
+    @ManyToOne
+    @JsonIgnoreProperties("mentorSkills")
+    private Technology technology;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -77,6 +81,19 @@ public class MentorSkill implements Serializable {
 
     public void setMentor(Mentor mentor) {
         this.mentor = mentor;
+    }
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public MentorSkill technology(Technology technology) {
+        this.technology = technology;
+        return this;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

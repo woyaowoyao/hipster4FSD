@@ -40,6 +40,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "userId",
+            "fieldType": "Long"
+        },
+        {
             "fieldName": "fees",
             "fieldType": "Float",
             "fieldValidateRules": [
