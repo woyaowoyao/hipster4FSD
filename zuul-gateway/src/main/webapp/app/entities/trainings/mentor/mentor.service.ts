@@ -16,7 +16,7 @@ type EntityArrayResponseType = HttpResponse<IMentor[]>;
 @Injectable({ providedIn: 'root' })
 export class MentorService {
   public resourceUrl = SERVER_API_URL + 'services/trainings/api/mentors';
-
+  public resourceSearchUrl = SERVER_API_URL + 'services/trainings/api/searchMentors';
   constructor(protected http: HttpClient) {}
 
   create(mentor: IMentor): Observable<EntityResponseType> {
@@ -45,7 +45,12 @@ export class MentorService {
       .get<IMentor[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
-
+  search(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<IMentor[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
