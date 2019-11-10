@@ -44,6 +44,9 @@ public class MyCalendarResourceIT {
     private static final DurationType DEFAULT_DURATION = DurationType.Morning0800;
     private static final DurationType UPDATED_DURATION = DurationType.Morning1000;
 
+    private static final Long DEFAULT_MEMBER_ID = 1L;
+    private static final Long UPDATED_MEMBER_ID = 2L;
+
     private static final String DEFAULT_REMARKS = "AAAAAAAAAA";
     private static final String UPDATED_REMARKS = "BBBBBBBBBB";
 
@@ -94,6 +97,7 @@ public class MyCalendarResourceIT {
         MyCalendar myCalendar = new MyCalendar()
             .calDate(DEFAULT_CAL_DATE)
             .duration(DEFAULT_DURATION)
+            .memberId(DEFAULT_MEMBER_ID)
             .remarks(DEFAULT_REMARKS);
         return myCalendar;
     }
@@ -107,6 +111,7 @@ public class MyCalendarResourceIT {
         MyCalendar myCalendar = new MyCalendar()
             .calDate(UPDATED_CAL_DATE)
             .duration(UPDATED_DURATION)
+            .memberId(UPDATED_MEMBER_ID)
             .remarks(UPDATED_REMARKS);
         return myCalendar;
     }
@@ -133,6 +138,7 @@ public class MyCalendarResourceIT {
         MyCalendar testMyCalendar = myCalendarList.get(myCalendarList.size() - 1);
         assertThat(testMyCalendar.getCalDate()).isEqualTo(DEFAULT_CAL_DATE);
         assertThat(testMyCalendar.getDuration()).isEqualTo(DEFAULT_DURATION);
+        assertThat(testMyCalendar.getMemberId()).isEqualTo(DEFAULT_MEMBER_ID);
         assertThat(testMyCalendar.getRemarks()).isEqualTo(DEFAULT_REMARKS);
     }
 
@@ -169,6 +175,7 @@ public class MyCalendarResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(myCalendar.getId().intValue())))
             .andExpect(jsonPath("$.[*].calDate").value(hasItem(DEFAULT_CAL_DATE.toString())))
             .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.toString())))
+            .andExpect(jsonPath("$.[*].memberId").value(hasItem(DEFAULT_MEMBER_ID.intValue())))
             .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)));
     }
     
@@ -185,6 +192,7 @@ public class MyCalendarResourceIT {
             .andExpect(jsonPath("$.id").value(myCalendar.getId().intValue()))
             .andExpect(jsonPath("$.calDate").value(DEFAULT_CAL_DATE.toString()))
             .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.toString()))
+            .andExpect(jsonPath("$.memberId").value(DEFAULT_MEMBER_ID.intValue()))
             .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS));
     }
 
@@ -211,6 +219,7 @@ public class MyCalendarResourceIT {
         updatedMyCalendar
             .calDate(UPDATED_CAL_DATE)
             .duration(UPDATED_DURATION)
+            .memberId(UPDATED_MEMBER_ID)
             .remarks(UPDATED_REMARKS);
 
         restMyCalendarMockMvc.perform(put("/api/my-calendars")
@@ -224,6 +233,7 @@ public class MyCalendarResourceIT {
         MyCalendar testMyCalendar = myCalendarList.get(myCalendarList.size() - 1);
         assertThat(testMyCalendar.getCalDate()).isEqualTo(UPDATED_CAL_DATE);
         assertThat(testMyCalendar.getDuration()).isEqualTo(UPDATED_DURATION);
+        assertThat(testMyCalendar.getMemberId()).isEqualTo(UPDATED_MEMBER_ID);
         assertThat(testMyCalendar.getRemarks()).isEqualTo(UPDATED_REMARKS);
     }
 

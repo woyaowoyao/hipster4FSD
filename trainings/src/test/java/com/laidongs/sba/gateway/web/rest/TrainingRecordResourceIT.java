@@ -55,6 +55,9 @@ public class TrainingRecordResourceIT {
     private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
     private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_USER_ID = 1L;
+    private static final Long UPDATED_USER_ID = 2L;
+
     private static final Float DEFAULT_FEES = 1F;
     private static final Float UPDATED_FEES = 2F;
 
@@ -112,6 +115,7 @@ public class TrainingRecordResourceIT {
             .avgRating(DEFAULT_AVG_RATING)
             .amountReceived(DEFAULT_AMOUNT_RECEIVED)
             .userName(DEFAULT_USER_NAME)
+            .userId(DEFAULT_USER_ID)
             .fees(DEFAULT_FEES)
             .remarks(DEFAULT_REMARKS);
         return trainingRecord;
@@ -130,6 +134,7 @@ public class TrainingRecordResourceIT {
             .avgRating(UPDATED_AVG_RATING)
             .amountReceived(UPDATED_AMOUNT_RECEIVED)
             .userName(UPDATED_USER_NAME)
+            .userId(UPDATED_USER_ID)
             .fees(UPDATED_FEES)
             .remarks(UPDATED_REMARKS);
         return trainingRecord;
@@ -161,6 +166,7 @@ public class TrainingRecordResourceIT {
         assertThat(testTrainingRecord.getAvgRating()).isEqualTo(DEFAULT_AVG_RATING);
         assertThat(testTrainingRecord.getAmountReceived()).isEqualTo(DEFAULT_AMOUNT_RECEIVED);
         assertThat(testTrainingRecord.getUserName()).isEqualTo(DEFAULT_USER_NAME);
+        assertThat(testTrainingRecord.getUserId()).isEqualTo(DEFAULT_USER_ID);
         assertThat(testTrainingRecord.getFees()).isEqualTo(DEFAULT_FEES);
         assertThat(testTrainingRecord.getRemarks()).isEqualTo(DEFAULT_REMARKS);
     }
@@ -292,6 +298,7 @@ public class TrainingRecordResourceIT {
             .andExpect(jsonPath("$.[*].avgRating").value(hasItem(DEFAULT_AVG_RATING.doubleValue())))
             .andExpect(jsonPath("$.[*].amountReceived").value(hasItem(DEFAULT_AMOUNT_RECEIVED.doubleValue())))
             .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME)))
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
             .andExpect(jsonPath("$.[*].fees").value(hasItem(DEFAULT_FEES.doubleValue())))
             .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)));
     }
@@ -313,6 +320,7 @@ public class TrainingRecordResourceIT {
             .andExpect(jsonPath("$.avgRating").value(DEFAULT_AVG_RATING.doubleValue()))
             .andExpect(jsonPath("$.amountReceived").value(DEFAULT_AMOUNT_RECEIVED.doubleValue()))
             .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME))
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()))
             .andExpect(jsonPath("$.fees").value(DEFAULT_FEES.doubleValue()))
             .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS));
     }
@@ -344,6 +352,7 @@ public class TrainingRecordResourceIT {
             .avgRating(UPDATED_AVG_RATING)
             .amountReceived(UPDATED_AMOUNT_RECEIVED)
             .userName(UPDATED_USER_NAME)
+            .userId(UPDATED_USER_ID)
             .fees(UPDATED_FEES)
             .remarks(UPDATED_REMARKS);
 
@@ -362,6 +371,7 @@ public class TrainingRecordResourceIT {
         assertThat(testTrainingRecord.getAvgRating()).isEqualTo(UPDATED_AVG_RATING);
         assertThat(testTrainingRecord.getAmountReceived()).isEqualTo(UPDATED_AMOUNT_RECEIVED);
         assertThat(testTrainingRecord.getUserName()).isEqualTo(UPDATED_USER_NAME);
+        assertThat(testTrainingRecord.getUserId()).isEqualTo(UPDATED_USER_ID);
         assertThat(testTrainingRecord.getFees()).isEqualTo(UPDATED_FEES);
         assertThat(testTrainingRecord.getRemarks()).isEqualTo(UPDATED_REMARKS);
     }

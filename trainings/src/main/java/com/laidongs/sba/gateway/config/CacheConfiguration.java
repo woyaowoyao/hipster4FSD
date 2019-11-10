@@ -45,6 +45,7 @@ public class CacheConfiguration {
             createCache(cm, com.laidongs.sba.gateway.domain.MyCalendar.class.getName());
             createCache(cm, com.laidongs.sba.gateway.domain.Training.class.getName());
             createCache(cm, com.laidongs.sba.gateway.domain.TrainingRecord.class.getName());
+            createCache(cm, com.laidongs.sba.gateway.domain.Technology.class.getName());     
             // jhipster-needle-ehcache-add-entry
         };
     }

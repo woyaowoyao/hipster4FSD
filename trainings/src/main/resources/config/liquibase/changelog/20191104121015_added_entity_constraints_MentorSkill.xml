@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="mentor"/>
 
+        <addForeignKeyConstraint baseColumnNames="technology_id"
+                                 baseTableName="mentor_skill"
+                                 constraintName="fk_mentor_skill_technology_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="technology"/>
+
     </changeSet>
 </databaseChangeLog>

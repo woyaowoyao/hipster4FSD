@@ -30,6 +30,9 @@ public class MyCalendar implements Serializable {
     @Column(name = "duration")
     private DurationType duration;
 
+    @Column(name = "member_id")
+    private Long memberId;
+
     @Column(name = "remarks")
     private String remarks;
 
@@ -70,6 +73,19 @@ public class MyCalendar implements Serializable {
 
     public void setDuration(DurationType duration) {
         this.duration = duration;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public MyCalendar memberId(Long memberId) {
+        this.memberId = memberId;
+        return this;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getRemarks() {
@@ -121,6 +137,7 @@ public class MyCalendar implements Serializable {
             "id=" + getId() +
             ", calDate='" + getCalDate() + "'" +
             ", duration='" + getDuration() + "'" +
+            ", memberId=" + getMemberId() +
             ", remarks='" + getRemarks() + "'" +
             "}";
     }

@@ -52,6 +52,9 @@ public class TrainingRecord implements Serializable {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @NotNull
     @Column(name = "fees", nullable = false)
     private Float fees;
@@ -150,6 +153,19 @@ public class TrainingRecord implements Serializable {
         this.userName = userName;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public TrainingRecord userId(Long userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public Float getFees() {
         return fees;
     }
@@ -216,6 +232,7 @@ public class TrainingRecord implements Serializable {
             ", avgRating=" + getAvgRating() +
             ", amountReceived=" + getAmountReceived() +
             ", userName='" + getUserName() + "'" +
+            ", userId=" + getUserId() +
             ", fees=" + getFees() +
             ", remarks='" + getRemarks() + "'" +
             "}";

@@ -11,6 +11,10 @@
             "fieldValues": "Morning0800,Morning1000,Afternoon1400,Afternoon1600"
         },
         {
+            "fieldName": "memberId",
+            "fieldType": "Long"
+        },
+        {
             "fieldName": "remarks",
             "fieldType": "String"
         }
