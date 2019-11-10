@@ -92,10 +92,17 @@ public class MentorResource {
         return result;
     }
 
-    @GetMapping("/searchMentors/{username}")
+    @GetMapping("/searchMentors2/{username}")
     public List<Mentor> searchMentors(@PathVariable String username) {
         log.debug("REST request to get search Mentors ");
         List<Mentor> result = mentorService.search(username);
+        return result;
+       
+    }
+    @GetMapping("/searchMentors")
+    public List<Mentor> searchMentors2(String  currentSearch,String  query) {
+        log.debug("REST request to get search Mentors2 ");
+        List<Mentor> result = mentorService.search( query);
         return result;
        
     }

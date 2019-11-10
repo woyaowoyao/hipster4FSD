@@ -17,10 +17,23 @@ export class MentorComponent implements OnInit, OnDestroy {
   mentors: IMentor[];
   currentAccount: any;
   eventSubscriber: Subscription;
+  currentSearch: string;
 
   constructor(protected mentorService: MentorService, protected eventManager: JhiEventManager, protected accountService: AccountService) {}
 
   loadAll() {
+    if (this.currentSearch) {
+      this.mentorService
+        .search({
+          query: this.currentSearch
+        })
+        .pipe(
+          filter((res: HttpResponse<IMentor[]>) => res.ok),
+          map((res: HttpResponse<IMentor[]>) => res.body)
+        )
+        .subscribe((res: IMentor[]) => (this.mentors = res));
+      return;
+    }
     this.mentorService
       .query()
       .pipe(
@@ -29,7 +42,21 @@ export class MentorComponent implements OnInit, OnDestroy {
       )
       .subscribe((res: IMentor[]) => {
         this.mentors = res;
+        this.currentSearch = '';
       });
+  }
+
+  search(query) {
+    if (!query) {
+      return this.clear();
+    }
+    this.currentSearch = query;
+    this.loadAll();
+  }
+
+  clear() {
+    this.currentSearch = '';
+    this.loadAll();
   }
 
   ngOnInit() {

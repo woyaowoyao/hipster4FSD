@@ -55,7 +55,7 @@ public class MentorServiceImpl implements MentorService {
     @Transactional(readOnly = true)
     public List<Mentor> search(String username) {
         log.debug("Request to get all Mentors");
-        return mentorRepository.findAllByUsername(username);
+        return mentorRepository.findAllByUsernameLike(username);
     }
     /**
      * Get one mentor by id.
