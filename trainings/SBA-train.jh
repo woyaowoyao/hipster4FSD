@@ -77,7 +77,7 @@ relationship ManyToOne {
 	TrainingRecord{training(name)} to Training
 }
 relationship ManyToOne {
-	MentorSkill{mentor(firstName)} to Mentor,
+	MentorSkill{mentor(username)} to Mentor,
 	MentorSkill{technology(name)} to Technology
 }
 relationship OneToOne {
