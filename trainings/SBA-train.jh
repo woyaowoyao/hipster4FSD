@@ -7,7 +7,16 @@ entity Mentor {
 	experience Float,
 	status TrainStatus  required
 }
-
+/**
+ * Technology entity.
+ * @author full stack laidongshi.
+ */
+entity Technology {
+	id Long,
+	name String  required,
+	toc String  ,
+	preprequisites String  
+}
 entity MentorSkill {
 	id Long,
 	selfRate  String,
@@ -17,6 +26,7 @@ entity MyCalendar {
 	id Long,	
 	calDate Instant,
 	duration DurationType,
+	memberId Long,
 	remarks String	
 }
 /**
@@ -33,7 +43,6 @@ entity Training {
 	endDate  Instant,  
 	remarks String
 }
-
 /**
  * TrainingRecord entity.
  * @author full stack trainning laidongshi.
@@ -45,7 +54,8 @@ entity TrainingRecord {
     commissionAmount Float required,
 	avgRating Float ,
 	amountReceived Float required,    
-    userName String ,	   
+    userName String ,	 
+    userId Long,  
     fees Float required,
 	remarks String
 }
@@ -66,17 +76,13 @@ enum TrainRecordStatus {
 relationship ManyToOne {
 	TrainingRecord{training(name)} to Training
 }
-
-
 relationship ManyToOne {
-	MentorSkill{mentor(firstName)} to Mentor
+	MentorSkill{mentor(firstName)} to Mentor,
+	MentorSkill{technology(name)} to Technology
 }
-
-
 relationship OneToOne {
 	MyCalendar{training(name)} to Training
 }
-
 // Set pagination options
 paginate TrainingRecord with infinite-scroll
 paginate TrainingRecord with pagination
