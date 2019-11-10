@@ -11,6 +11,8 @@ import { IMentorSkill, MentorSkill } from 'app/shared/model/trainings/mentor-ski
 import { MentorSkillService } from './mentor-skill.service';
 import { IMentor } from 'app/shared/model/trainings/mentor.model';
 import { MentorService } from 'app/entities/trainings/mentor/mentor.service';
+import { ITechnology } from 'app/shared/model/trainings/technology.model';
+import { TechnologyService } from 'app/entities/trainings/technology/technology.service';
 
 @Component({
   selector: 'jhi-mentor-skill-update',
@@ -21,17 +23,21 @@ export class MentorSkillUpdateComponent implements OnInit {
 
   mentors: IMentor[];
 
+  technologies: ITechnology[];
+
   editForm = this.fb.group({
     id: [],
     selfRate: [],
     experience: [],
-    mentor: []
+    mentor: [],
+    technology: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected mentorSkillService: MentorSkillService,
     protected mentorService: MentorService,
+    protected technologyService: TechnologyService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -48,6 +54,13 @@ export class MentorSkillUpdateComponent implements OnInit {
         map((response: HttpResponse<IMentor[]>) => response.body)
       )
       .subscribe((res: IMentor[]) => (this.mentors = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.technologyService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<ITechnology[]>) => mayBeOk.ok),
+        map((response: HttpResponse<ITechnology[]>) => response.body)
+      )
+      .subscribe((res: ITechnology[]) => (this.technologies = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(mentorSkill: IMentorSkill) {
@@ -55,7 +68,8 @@ export class MentorSkillUpdateComponent implements OnInit {
       id: mentorSkill.id,
       selfRate: mentorSkill.selfRate,
       experience: mentorSkill.experience,
-      mentor: mentorSkill.mentor
+      mentor: mentorSkill.mentor,
+      technology: mentorSkill.technology
     });
   }
 
@@ -79,7 +93,8 @@ export class MentorSkillUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       selfRate: this.editForm.get(['selfRate']).value,
       experience: this.editForm.get(['experience']).value,
-      mentor: this.editForm.get(['mentor']).value
+      mentor: this.editForm.get(['mentor']).value,
+      technology: this.editForm.get(['technology']).value
     };
   }
 
@@ -100,6 +115,10 @@ export class MentorSkillUpdateComponent implements OnInit {
   }
 
   trackMentorById(index: number, item: IMentor) {
+    return item.id;
+  }
+
+  trackTechnologyById(index: number, item: ITechnology) {
     return item.id;
   }
 }

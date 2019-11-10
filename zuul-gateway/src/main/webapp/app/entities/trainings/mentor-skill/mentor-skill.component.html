@@ -22,6 +22,7 @@
             <th scope="col" ><span>Self Rate</span></th>
             <th scope="col" ><span>Experience</span></th>
             <th scope="col" ><span>Mentor</span></th>
+            <th scope="col" ><span>Technology</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -33,6 +34,11 @@
                 <td>
                     <div *ngIf="mentorSkill.mentor">
                         <a [routerLink]="['/mentor', mentorSkill.mentor?.id, 'view' ]" >{{mentorSkill.mentor?.firstName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="mentorSkill.technology">
+                        <a [routerLink]="['/technology', mentorSkill.technology?.id, 'view' ]" >{{mentorSkill.technology?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

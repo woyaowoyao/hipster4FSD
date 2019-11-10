@@ -19,6 +19,12 @@
                         <a [routerLink]="['/mentor', mentorSkill.mentor?.id, 'view']">{{mentorSkill.mentor?.firstName}}</a>
                     </div>
                 </dd>
+                <dt><span>Technology</span></dt>
+                <dd>
+                    <div *ngIf="mentorSkill.technology">
+                        <a [routerLink]="['/technology', mentorSkill.technology?.id, 'view']">{{mentorSkill.technology?.name}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
