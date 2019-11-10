@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Elasticsearch Reindexer 2 generator",
+        "npmPackageName": "generator-jhipster-elasticsearch-reindexer-2",
+        "description": "Generate a service for reindexing all database rows for each of your entities",
+        "hookFor": "entity",
+        "hookType": "post",
+        "generatorCallback": "jhipster-elasticsearch-reindexer-2:app"
+    }
+]
