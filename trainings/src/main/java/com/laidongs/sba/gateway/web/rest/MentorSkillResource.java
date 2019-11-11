@@ -1,5 +1,6 @@
 package com.laidongs.sba.gateway.web.rest;
 
+import com.laidongs.sba.gateway.domain.Mentor;
 import com.laidongs.sba.gateway.domain.MentorSkill;
 import com.laidongs.sba.gateway.service.MentorSkillService;
 import com.laidongs.sba.gateway.web.rest.errors.BadRequestAlertException;
@@ -89,7 +90,13 @@ public class MentorSkillResource {
         log.debug("REST request to get all MentorSkills");
         return mentorSkillService.findAll();
     }
-
+    @GetMapping("/searchMentorsTechnology")
+    public List<MentorSkill> searchMentorsTechnology(String  currentSearch,String  query) {
+        log.debug("REST request to get search Mentors2 ");
+        List<MentorSkill> result = mentorSkillService.search(query);
+        return result;
+       
+    }
     /**
      * {@code GET  /mentor-skills/:id} : get the "id" mentorSkill.
      *

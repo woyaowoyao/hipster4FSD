@@ -73,4 +73,15 @@ b.以下为步骤演示
    
   docker run -u root  --rm -d -p 9084:9084   robin9999/trainings:sba1 --network bridge   $(cat /etc/hosts|awk -F ' ' '{if(NR>2){print "--add-host "$2":"$1}}')  --name trainings1 
   
+  
+  
+  2019-11-10 过期文件夹
+  Gateway
+  gateway-jwt
+  gateway-jwt2
+  gateway-jwt-ng
+  users
+  technology
+  2019-11-10 过期文件夹
+  
    apk add bash wget curl

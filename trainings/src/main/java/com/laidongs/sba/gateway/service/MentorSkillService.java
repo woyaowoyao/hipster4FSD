@@ -1,5 +1,6 @@
 package com.laidongs.sba.gateway.service;
 
+import com.laidongs.sba.gateway.domain.Mentor;
 import com.laidongs.sba.gateway.domain.MentorSkill;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface MentorSkillService {
      */
     List<MentorSkill> findAll();
 
-
+    List<MentorSkill> search(String technologyName);
     /**
      * Get the "id" mentorSkill.
      *

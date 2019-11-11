@@ -1,6 +1,7 @@
 package com.laidongs.sba.gateway.service.impl;
 
 import com.laidongs.sba.gateway.service.MentorSkillService;
+import com.laidongs.sba.gateway.domain.Mentor;
 import com.laidongs.sba.gateway.domain.MentorSkill;
 import com.laidongs.sba.gateway.repository.MentorSkillRepository;
 import org.slf4j.Logger;
@@ -51,7 +52,13 @@ public class MentorSkillServiceImpl implements MentorSkillService {
         return mentorSkillRepository.findAll();
     }
 
-
+    
+    @Override
+    @Transactional(readOnly = true)
+    public   List<MentorSkill> search(String technologyName){
+        log.debug("Request technologyName to get all Mentors");
+        return mentorSkillRepository.search(technologyName);
+    }
     /**
      * Get one mentorSkill by id.
      *
