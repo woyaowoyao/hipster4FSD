@@ -68,11 +68,18 @@ docker stop $(docker ps -a -q) #stop all container
    
  docker-compose -f docker-compose-zuulgateway-dev.yml  up -d
  docker-compose -f docker-compose-zuulgateway-dev.yml  down
+  如果微服务无法发现users，可选运行runProfile-dev.bat
   
 3.cd users & mvn clean package & docker build -t users:dev .  
 4 docker-compose -f docker-compose-users-dev.yml  up -d
  docker-compose -f docker-compose-users-dev.yml  down
-   
+ 
+ 如果微服务无法发现users可选运行runProfile-dev.bat
+ 
+5.eclipse debug trainings
+6.vscode change ui code 
+7.cd C:\java\test\sba4FSD\zuul-gateway & npm start
+
 c.以下为步骤演示-本地开发trainings cd C:\java\test\sba4FSD\docker-comp
 docker stop $(docker ps -a -q) 
    1.docker-compose -f .\docker-compose-dev.yml up -d
@@ -100,3 +107,6 @@ docker stop $(docker ps -a -q)
   2019-11-10 过期文件夹
   
    apk add bash wget curl
+问题描述及解决方法
+  1.描述 I/O error on GET request for "http://users/oauth/token_key": Connection timed out: connect;
+    解决方法：先启动eureka users zuulgateway 再启动其他微服务(trainings)
