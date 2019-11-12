@@ -38,6 +38,7 @@
             <th scope="col" ><span>Experience</span></th>
             <th scope="col" ><span>Mentor</span></th>
             <th scope="col" ><span>Technology</span></th>
+             <th scope="col" ><span>Preprequisites</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -54,6 +55,11 @@
                 <td>
                     <div *ngIf="mentorSkill.technology">
                         <a [routerLink]="['/technology', mentorSkill.technology?.id, 'view' ]" >{{mentorSkill.technology?.name}}</a>
+                    </div>
+                </td>
+                 <td>
+                    <div *ngIf="mentorSkill.technology">
+                        <a [routerLink]="['/technology', mentorSkill.technology?.id, 'view' ]" >{{mentorSkill.technology?.preprequisites}}</a>
                     </div>
                 </td>
                 <td class="text-right">

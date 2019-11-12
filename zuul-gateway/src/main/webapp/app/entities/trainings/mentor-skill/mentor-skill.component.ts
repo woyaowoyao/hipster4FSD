@@ -27,7 +27,7 @@ export class MentorSkillComponent implements OnInit, OnDestroy {
 
   loadAll() {
    if (this.currentSearch) {
-      this.mentorService
+      this.mentorSkillService
         .search({
           query: this.currentSearch
         })

@@ -34,9 +34,10 @@ export class MentorSkillService {
   
   search(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http
-      .get<IMentorSkill[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    return this.http.get<IMentorSkill[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    // this.http
+    //.get<IMentorSkill[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
+     // .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res));
   }
   
   delete(id: number): Observable<HttpResponse<any>> {
