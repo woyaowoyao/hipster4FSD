@@ -17,6 +17,7 @@ export class MentorSkillComponent implements OnInit, OnDestroy {
   mentorSkills: IMentorSkill[];
   currentAccount: any;
   eventSubscriber: Subscription;
+  currentSearch: string;
 
   constructor(
     protected mentorSkillService: MentorSkillService,
@@ -25,6 +26,18 @@ export class MentorSkillComponent implements OnInit, OnDestroy {
   ) {}
 
   loadAll() {
+   if (this.currentSearch) {
+      this.mentorService
+        .search({
+          query: this.currentSearch
+        })
+        .pipe(
+          filter((res: HttpResponse<IMentorSkill[]>) => res.ok),
+          map((res: HttpResponse<IMentorSkill[]>) => res.body)
+        )
+        .subscribe((res: IMentorSkill[]) => (this.mentorSkills = res));
+      return;
+    }
     this.mentorSkillService
       .query()
       .pipe(
@@ -33,9 +46,21 @@ export class MentorSkillComponent implements OnInit, OnDestroy {
       )
       .subscribe((res: IMentorSkill[]) => {
         this.mentorSkills = res;
+        this.currentSearch = '';
       });
   }
-
+  
+  search(query) {
+    if (!query) {
+      return this.clear();
+    }
+    this.currentSearch = query;
+    this.loadAll();
+  }
+   clear() {
+    this.currentSearch = '';
+    this.loadAll();
+  }
   ngOnInit() {
     this.loadAll();
     this.accountService.identity().subscribe(account => {

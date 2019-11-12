@@ -12,7 +12,7 @@ type EntityArrayResponseType = HttpResponse<IMentorSkill[]>;
 @Injectable({ providedIn: 'root' })
 export class MentorSkillService {
   public resourceUrl = SERVER_API_URL + 'services/trainings/api/mentor-skills';
-
+  public resourceSearchUrl = SERVER_API_URL + 'services/trainings/api/searchMentorsTechnology';
   constructor(protected http: HttpClient) {}
 
   create(mentorSkill: IMentorSkill): Observable<EntityResponseType> {
@@ -31,7 +31,14 @@ export class MentorSkillService {
     const options = createRequestOption(req);
     return this.http.get<IMentorSkill[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
-
+  
+  search(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<IMentorSkill[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+  
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
