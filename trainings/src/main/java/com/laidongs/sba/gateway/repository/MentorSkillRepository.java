@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MentorSkillRepository extends JpaRepository<MentorSkill, Long> {
 	
-	@Query("select a from MentorSkill a where a.technology.name like ?1") 
+	@Query("select a from MentorSkill a where a.technology.name like CONCAT('%',?1,'%')") 
     List<MentorSkill> search(String technologyName);
 
     //@EntityGraph(attributePaths = "technology")
