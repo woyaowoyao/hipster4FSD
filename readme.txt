@@ -61,6 +61,8 @@ a.docker 文件说明
 -a----        2019/11/9     15:17            254 docker-compose-zuulgateway-dev.yml
 -a----        2019/11/9     15:17            451 docker-compose.yml
 b.以下为步骤演示  
+cd C:\java\test\sba4FSD\docker-comp
+docker stop $(docker ps -a -q) #stop all container
 1  docker-compose -f .\docker-compose-eureka.yml up -d
 2.cd zuulgateway & mvn clean package & docker build -t zuulgateway:dev .
    
@@ -71,10 +73,23 @@ b.以下为步骤演示
 4 docker-compose -f docker-compose-users-dev.yml  up -d
  docker-compose -f docker-compose-users-dev.yml  down
    
+c.以下为步骤演示-本地开发trainings cd C:\java\test\sba4FSD\docker-comp
+docker stop $(docker ps -a -q) 
+   1.docker-compose -f .\docker-compose-dev.yml up -d
+   2.eclipse debug trainings
+   3.vscode change ui code 
+   4.cd C:\java\test\sba4FSD\zuul-gateway & npm start
   docker run -u root  --rm -d -p 9084:9084   robin9999/trainings:sba1 --network bridge   $(cat /etc/hosts|awk -F ' ' '{if(NR>2){print "--add-host "$2":"$1}}')  --name trainings1 
   
   
   
+本地开发注意host 文件增加以下#
+127.0.0.1   jhipster-registry
+127.0.0.1 docker-compose-eureka
+127.0.0.1 payments-mysql
+127.0.0.1 trainings-mysql
+127.0.0.1 users-mysql
+本地开发注意host 文件增加以上#
   2019-11-10 过期文件夹
   Gateway
   gateway-jwt
