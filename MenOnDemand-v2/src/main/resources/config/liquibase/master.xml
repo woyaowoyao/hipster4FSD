@@ -28,6 +28,7 @@
     <include file="config/liquibase/changelog/20191104002716_added_entity_TrainingRecord.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191104002717_added_entity_PaymentRecord.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191104002718_added_entity_Technology.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191121112653_added_entity_Course.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20191102035024_added_entity_constraints_Mentor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191102035025_added_entity_constraints_MentorSkill.xml" relativeToChangelogFile="false"/>

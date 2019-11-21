@@ -1,0 +1,28 @@
+{
+    "name": "Course",
+    "fields": [
+        {
+            "fieldName": "courseName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "topic",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191121112653",
+    "javadoc": "Course entity.\\n@author full stack trainning Fang Mao Hua.",
+    "entityTableName": "course",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

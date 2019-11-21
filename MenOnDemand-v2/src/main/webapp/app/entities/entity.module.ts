@@ -31,6 +31,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'technology',
         loadChildren: () => import('./technology/technology.module').then(m => m.MenOnDemandV2TechnologyModule)
+      },
+      {
+        path: 'course',
+        loadChildren: () => import('./course/course.module').then(m => m.MenOnDemandV2CourseModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

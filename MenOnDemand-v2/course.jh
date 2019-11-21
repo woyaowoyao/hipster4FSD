@@ -1,0 +1,15 @@
+
+/**
+ * Course entity.
+ * @author full stack trainning Fang Mao Hua.
+ */
+entity Course {
+	id Long,	
+	CourseName String  required,     
+	topic String
+}
+
+//  Data Transfert Objects (DTO)
+// dto * with mapstruct
+service all with serviceImpl
+
