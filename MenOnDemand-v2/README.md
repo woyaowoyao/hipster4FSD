@@ -6,6 +6,18 @@ This is a "gateway" application intended to be part of a microservice architectu
 
 This application is configured for Service Discovery and Configuration with the JHipster-Registry. On launch, it will refuse to start if it is not able to connect to the JHipster-Registry at [http://localhost:8761](http://localhost:8761). For more information, read our documentation on [Service Discovery and Configuration with the JHipster-Registry][].
 
+问题：
+1.2019-11-21  jhipster import-jdl course.jh  运行时提示找不到表 course 重新 run  ./mvnw compile liquibase:diff
+
+Modify your JPA entity (add a field, a relationship, etc.)
+Compile your application (this works on the compiled Java code, so don’t forget to compile!)
+Run ./mvnw liquibase:diff (or ./mvnw compile liquibase:diff to compile before)
+A new “change log” is created in your src/main/resources/config/liquibase/changelog directory
+Review this change log and add it to your src/main/resources/config/liquibase/master.xml file, so it is applied the next time you run your application
+
+https://www.jhipster.tech/development/
+2019-11-21
+
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
